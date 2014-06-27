@@ -8,6 +8,7 @@
 	
 	{{ HTML::style('css/bootstrap.min.css'); }}
 	{{ HTML::style('css/style.css'); }}
+	<link href='http://fonts.googleapis.com/css?family=Lato:100,400,900' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<nav class="navbar navbar-default" role="navigation">
