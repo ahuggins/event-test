@@ -1,0 +1,21 @@
+body {
+	background: #ddd;
+}
+.event {
+	background: #fff;
+	width: 300px;
+	border-radius: 10px;
+}
+.event h3 {
+	margin: 0;
+}
+.event img {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+.event .details {
+	padding: 10px;
+}
+.event .time {
+	color: #aaa;
+}
