@@ -52,3 +52,7 @@ Route::get('/', function()
 {
 	return View::make('events/test');
 });
+
+Route::get('/wes_awesome_page', function(){
+	return View::make('wes/awesome');
+});
