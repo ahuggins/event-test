@@ -52,3 +52,7 @@ Route::get('/', function()
 {
 	return View::make('events/test');
 });
+Route::get('/lane', function()
+{
+	return View::make('lane');
+});

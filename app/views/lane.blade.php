@@ -1,1 +1,5 @@
-hi bitches, laneasdf
+@extends('layouts/default')
+
+@section('Content')
+hi bitches
+@stop
