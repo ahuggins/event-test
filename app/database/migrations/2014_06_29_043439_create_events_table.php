@@ -12,7 +12,7 @@ class CreateEventsTable extends Migration {
 	 */
 	public function up()
 	{
-		Scheme::create('events',function($table){
+		Schema::create('events',function($table){
 			$table->engine = 'InnoDB';
 			$table->increments('id');
 			$table->string('title');
@@ -21,14 +21,14 @@ class CreateEventsTable extends Migration {
 			$table->string('location');
 			$table->string('created_by');
 			$table->string('hosted_by');
-			$table->string('event_type')
+			$table->string('event_type');
 			$table->text('description');
 			$table->boolean('is_private')->default(false);
 			$table->softDeletes();
 			$table->timestamps();
 		});
 
-		Scheme::create('tags',function($table){
+		Schema::create('tags',function($table){
 			$table->engine = 'InnoDB';
 			$table->increments('id');
 			$table->string('tag_text');
@@ -36,13 +36,13 @@ class CreateEventsTable extends Migration {
 			$table->timestamps();
 		});
 
-		Scheme::create('events-tags-relation',function($table){
+		Schema::create('events-tags-relation',function($table){
 			$table->engine = 'InnoDB';
 			$table->integer('event_id')->unsigned()->index();
 			$table->integer('tag_id')->unsigned()->index();
 			$table->foreign('event_id')->references('id')->on('users')->onDelete('cascade');
 			$table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
-		}
+		});
 	}
 
 	/**

@@ -12,7 +12,7 @@ class SetupUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		Scheme::create('users',function($table){
+		Schema::create('users',function($table){
 			$table->engine = 'InnoDB';
 			$table->increments('id');
 			$table->string('username');
@@ -25,8 +25,9 @@ class SetupUsersTable extends Migration {
 			$table->timestamps();
 		});
 
-		Scheme::create('users_social_keys',function($table){
+		Schema::create('users_social_keys',function($table){
 			$table->engine = 'InnoDB';
+			$table->integer('user_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users');
 
 			//Facebook
@@ -44,7 +45,7 @@ class SetupUsersTable extends Migration {
 		});
 
 
-		Scheme::create('password_reminders',function($table){
+		Schema::create('password_reminders',function($table){
 			$table->engine = 'InnoDB';
 			$table->string('email');
 			$table->string('token');
