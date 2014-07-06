@@ -52,3 +52,8 @@ Route::get('/', function()
 {
 	return View::make('events/test');
 });
+Route::get('/events', function()
+{
+	$events = Events::all();
+	return View::make('events/all', ['events' => $events]);
+});
