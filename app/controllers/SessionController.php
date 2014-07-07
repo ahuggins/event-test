@@ -37,7 +37,7 @@ class SessionController extends \BaseController {
 			// return 'Welcome ' . Auth::user()->username . '!';
 			return Redirect::to('/')->withUser('user');
 		}
-		return 'Failed';
+		return Redirect::back()->withInput();
 	}
 
 
