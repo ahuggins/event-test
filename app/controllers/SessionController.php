@@ -34,7 +34,8 @@ class SessionController extends \BaseController {
 	{
 		if ( Auth::attempt( Input::only( 'email', 'password' ) ) ) 
 		{
-			return 'Welcome ' . Auth::user()->username . '!';
+			// return 'Welcome ' . Auth::user()->username . '!';
+			return Redirect::to('/')->withUser('user');
 		}
 		return 'Failed';
 	}

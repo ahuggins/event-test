@@ -49,16 +49,22 @@
 					<button type="submit" class="btn btn-default">Submit</button>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Sign Up</a></li>
-					<li><a href="{{ URL::to('/login') }}">Sign In</a></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							@if( Auth::user() )
+								Hello {{ Auth::user()->username }} 
+							@else 
+								Menu
+							@endif
+							<span class="caret"></span>
+						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Separated link</a></li>
+							@if(Auth::user())
+								<li><a href="{{ URL::to('/logout') }}">Logout</a></li>
+							@else
+								<li><a href="{{ URL::to('/login') }}">Sign In</a></li>
+								<li><a href="#">Sign Up</a></li>
+							@endif						
 						</ul>
 					</li>
 				</ul>
