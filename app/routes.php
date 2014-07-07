@@ -10,6 +10,15 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::get('/login', 'SessionController@create');
+Route::get('/logout', 'SessionController@destroy');
+Route::resource('session', 'SessionController');
+
+Route::get('admin', function()
+{
+	return 'Admin Page!';
+})->before('auth');
+
 
 Route::model('event','Event');
 Route::model('user','User');

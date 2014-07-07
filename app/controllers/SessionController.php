@@ -1,6 +1,6 @@
 <?php
 
-class UserController extends \BaseController {
+class SessionController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,7 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		return 'List of all users';
+		
 	}
 
 
@@ -20,7 +20,8 @@ class UserController extends \BaseController {
 	 */
 	public function create()
 	{
-		return Redirect::view('users.create');
+		if ( Auth::check() ) return Redirect::to('/admin');
+		return View::make('session.create');
 	}
 
 
@@ -31,7 +32,11 @@ class UserController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		if ( Auth::attempt( Input::only( 'email', 'password' ) ) ) 
+		{
+			return 'Welcome ' . Auth::user()->username . '!';
+		}
+		return 'Failed';
 	}
 
 
@@ -74,12 +79,12 @@ class UserController extends \BaseController {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
-		//
+		Auth::logout();
+		return Redirect::route('session.create');
 	}
 
 
