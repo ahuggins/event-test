@@ -12,12 +12,11 @@
 							<h3>{{ $event['title'] }}</h3>
 							<div class="time">
 							Time: {{ date( 'h:i A', strtotime( $event['start_time'] ) ) }} - {{ date( 'h:i A', strtotime( $event['end_time'] ) ) }} 
-
 							</div>	
 							<div class="description">
 								{{ $event['description'] }}
 							</div>
-						</div>
+						</div> 
 					</div>
 				@endforeach
 			</div>
