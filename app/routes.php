@@ -66,3 +66,4 @@ Route::get('/events', function()
 	$events = Events::all();
 	return View::make('events/all', ['events' => $events]);
 });
+Route::get('/events/create', 'EventController@create');

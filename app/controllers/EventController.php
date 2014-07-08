@@ -20,7 +20,8 @@ class EventController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		// $user = Auth::users();
+		return View::make('events.create');
 	}
 
 
