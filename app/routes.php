@@ -66,4 +66,5 @@ Route::get('/events', function()
 	$events = Events::all();
 	return View::make('events/all', ['events' => $events]);
 });
-Route::get('/events/create', 'EventController@create');
+Route::get('/event/create', array('as' => 'event.create', 'uses' => 'EventAdminController@create') )->before('auth');
+Route::resource('eventAdmin', 'EventAdminController@store');
