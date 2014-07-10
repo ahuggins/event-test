@@ -28,7 +28,7 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="/events">All Events</a></li>
-					<li><a href="#">Link</a></li>
+					<!-- <li><a href="#">Link</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
@@ -40,7 +40,7 @@
 							<li class="divider"></li>
 							<li><a href="#">One more separated link</a></li>
 						</ul>
-					</li>
+					</li> -->
 				</ul>
 				<form class="navbar-form navbar-left" role="search">
 					<div class="form-group">

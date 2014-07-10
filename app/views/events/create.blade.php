@@ -18,7 +18,6 @@
 				</div>
 
 				{{ Form::text('event_type', null, array('placeholder' => 'Event Type', 'class' => 'form-control')) }}
-				{{ Form::hidden('created_by', $user) }}
 				{{ Form::submit() }}
 			{{ Form::close() }}
 		</div>
