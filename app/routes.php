@@ -61,12 +61,10 @@ Route::get('/', function()
 {
 	return View::make('events/test');
 });
-<<<<<<< HEAD
 Route::get('/lane', function()
 {
 	return View::make('lane');
 });
-=======
 Route::get('/events', function()
 {
 	$events = Events::all();
@@ -74,4 +72,3 @@ Route::get('/events', function()
 });
 Route::get('/event/create', array('as' => 'event.create', 'uses' => 'EventAdminController@create') )->before('auth');
 Route::resource('eventAdmin', 'EventAdminController');
->>>>>>> authentication-ah
