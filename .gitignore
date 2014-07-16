@@ -9,4 +9,4 @@ Thumbs.db
 /.idea/
 vagrant
 Vagrant
-.vagrant/
+.vagrant
