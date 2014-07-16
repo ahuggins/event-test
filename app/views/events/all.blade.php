@@ -4,11 +4,12 @@
 	<div class="main">
 		<div class="container">
 			<h3>Today</h3>
-			<div class="events">
+			<div id="events">
 				@foreach($events as $event)
 					<div class="event">
-						<img src="//lorempixel.com/300/150/nightlife/{{ rand(1,10) }}" alt="">
+						<img src="//lorempixel.com/300/150/nightlife/{{ rand(1,10) }}" alt="" class="img-responsive">
 						<div class="details">
+						<?php Debugbar::addMessage($event); ?>
 							<h3>{{ $event['title'] }}</h3>
 							<div class="time">
 							Time: {{ date( 'h:i A', strtotime( $event['start_time'] ) ) }} - {{ date( 'h:i A', strtotime( $event['end_time'] ) ) }} 

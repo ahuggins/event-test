@@ -4,11 +4,22 @@
 	<title></title>
 	{{ HTML::script('js/jquery-1.11.1.min.js'); }}
 	{{ HTML::script('js/bootstrap.min.js'); }}
+	{{ HTML::script('js/masonry.pkgd.min.js'); }}
 	
 	
 	{{ HTML::style('css/bootstrap.min.css'); }}
 	{{ HTML::style('css/style.css'); }}
 	<link href='http://fonts.googleapis.com/css?family=Lato:100,400,900' rel='stylesheet' type='text/css'>
+	<script>
+		var $container = $('#events');
+			// initialize
+			$container.masonry({
+			  columnWidth: 300,
+			  itemSelector: '.event'
+			});
+		
+
+	</script>
 </head>
 <body>
 	<nav class="navbar navbar-default" role="navigation">
