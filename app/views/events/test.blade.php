@@ -6,7 +6,7 @@
 			<h3>Today</h3>
 			<div class="events">
 				<div class="event">
-					<img src="//placehold.it/300x150" alt="">
+					<img src="//placehold.it/300x150" alt="" class="img-responsive">
 					<div class="details">
 						<h3>Lexington Beerfest</h3>
 						<div class="time">Time: 8pm-10pm</div>	

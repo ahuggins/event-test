@@ -9,7 +9,7 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return 'List of all users';
 	}
 
 
@@ -20,7 +20,7 @@ class UserController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return Redirect::view('users.create');
 	}
 
 

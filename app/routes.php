@@ -10,6 +10,15 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::get('/login', 'SessionController@create');
+Route::get('/logout', 'SessionController@destroy');
+Route::resource('session', 'SessionController');
+
+Route::get('admin', function()
+{
+	return 'Admin Page!';
+})->before('auth');
+
 
 Route::model('event','Event');
 Route::model('user','User');
@@ -52,7 +61,17 @@ Route::get('/', function()
 {
 	return View::make('events/test');
 });
+<<<<<<< HEAD
 Route::get('/lane', function()
 {
 	return View::make('lane');
 });
+=======
+Route::get('/events', function()
+{
+	$events = Events::all();
+	return View::make('events/all', ['events' => $events]);
+});
+Route::get('/event/create', array('as' => 'event.create', 'uses' => 'EventAdminController@create') )->before('auth');
+Route::resource('eventAdmin', 'EventAdminController');
+>>>>>>> authentication-ah
