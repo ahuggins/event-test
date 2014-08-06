@@ -76,7 +76,7 @@
 								<li><a href="{{ URL::to('/logout') }}">Logout</a></li>
 							@else
 								<li><a href="{{ URL::to('/login') }}">Sign In</a></li>
-								<li><a href="#">Sign Up</a></li>
+								<li><a href="{{ URL::to('/users/create') }}">Sign Up</a></li>
 							@endif						
 						</ul>
 					</li>

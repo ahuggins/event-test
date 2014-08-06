@@ -1,6 +1,6 @@
 <?php
 
-class UserController extends \BaseController {
+class UsersController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,8 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		return 'List of all users';
+		$users = User::all();
+		return View::make('users.index', ['users' => $users]);
 	}
 
 
@@ -20,7 +21,7 @@ class UserController extends \BaseController {
 	 */
 	public function create()
 	{
-		return Redirect::view('users.create');
+		return View::make('users.create');
 	}
 
 
@@ -31,7 +32,19 @@ class UserController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+
+		$validation = Validator::make(Input::all(), ['username' => 'required', 'password' => 'required']);
+
+		if ($validation->fails()){
+			return Redirect::back()->withInput()->withErrors($validation->messages());
+		}
+
+		$user = new User();
+		$user->email = Input::get('email');
+		$user->password = Hash::make(Input::get('password'));
+		$user->save();
+
+		return Redirect::route('users.index');
 	}
 
 
@@ -41,9 +54,10 @@ class UserController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($username)
 	{
-		//
+		$user = User::whereUsername($username)->first();
+		return View::make('users.show', ['user' => $user]);
 	}
 
 
