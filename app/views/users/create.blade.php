@@ -9,7 +9,7 @@
 				<h2 class="form-signin-heading">Create Account</h2>
 				<div>
 					{{ Form::email('email', '', array('placeholder' => 'Email Address', 'class' => 'form-control', 'autofocus')) }}
-					{{ $errors->first('username', '<span class=error>:message</span>') }}
+					{{ $errors->first('email', '<span class=error>:message</span>') }}
 				</div>
 				<div>
 					{{ Form::password('password', array('placeholder' => 'Password', 'class' => 'form-control') ) }}

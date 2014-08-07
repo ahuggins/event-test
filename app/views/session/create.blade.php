@@ -3,7 +3,7 @@
 @section('Content')
 	<div class="login">
 		<div class="container">
-		 	{{ Form::open( ['route' => 'session.create', 'class' => 'form-signin'] ) }}
+		 	{{ Form::open( ['route' => 'session.store', 'class' => 'form-signin'] ) }}
 		 		<h2 class="form-signin-heading">Login Below</h2>
 		 		<div>
 					{{ Form::email('email', '', array('placeholder' => 'Email Address', 'class' => 'form-control', 'autofocus')) }}
