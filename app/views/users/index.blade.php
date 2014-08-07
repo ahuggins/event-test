@@ -5,5 +5,5 @@
 
 
 @section('Content')
-herp
+	This would be the user dashboard
 @stop
