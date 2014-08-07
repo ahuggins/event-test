@@ -8,7 +8,9 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, host: 8383, guest: 80
   config.vm.network :private_network, ip: "192.168.50.8"
 
-  config.vm.synced_folder ".", "/var/www/laravel", {:mount_options => ['dmode=777','fmode=777']}
+  config.vm.synced_folder ".", "/vagrant", :mount_options => ['dmode=777','fmode=777']
+
+  # Set the ownership of the app/storage directory
 
   config.vm.hostname = "test2"
 
@@ -23,5 +25,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision :shell, :path => "vagrant.sh"
+
+
 
 end

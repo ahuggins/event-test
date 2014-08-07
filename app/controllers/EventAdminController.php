@@ -1,6 +1,6 @@
-<?php
+<?php 
 
-class EventController extends \BaseController {
+class EventAdminController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -20,8 +20,8 @@ class EventController extends \BaseController {
 	 */
 	public function create()
 	{
-		// $user = Auth::users();
-		return View::make('events.create');
+		$user = Auth::user()->username;
+		return View::make('events.create', ['user' => $user]);
 	}
 
 
@@ -32,7 +32,16 @@ class EventController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		// return 'Store the event';
+		$event = new Events();
+		$event->title = Input::get('title');
+		$event->start_time = Input::get('start_time');
+		$event->end_time = Input::get('end_time');
+		$event->location = Input::get('location');
+		$event->description = Input::get('description');
+		$event->created_by = Auth::user()->username;
+		$event->save();
+		return Redirect::to('/events');
 	}
 
 

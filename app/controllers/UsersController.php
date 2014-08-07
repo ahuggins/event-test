@@ -1,6 +1,6 @@
 <?php
 
-class EventController extends \BaseController {
+class UsersController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,8 @@ class EventController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$users = User::all();
+		return View::make('users.index', ['users' => $users]);
 	}
 
 
@@ -20,8 +21,7 @@ class EventController extends \BaseController {
 	 */
 	public function create()
 	{
-		// $user = Auth::users();
-		return View::make('events.create');
+		return View::make('users.create');
 	}
 
 
@@ -32,7 +32,19 @@ class EventController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+
+		$validation = Validator::make(Input::all(), ['username' => 'required', 'password' => 'required']);
+
+		if ($validation->fails()){
+			return Redirect::back()->withInput()->withErrors($validation->messages());
+		}
+
+		$user = new User();
+		$user->email = Input::get('email');
+		$user->password = Hash::make(Input::get('password'));
+		$user->save();
+
+		return Redirect::route('users.index');
 	}
 
 
@@ -42,9 +54,10 @@ class EventController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($username)
 	{
-		//
+		$user = User::whereUsername($username)->first();
+		return View::make('users.show', ['user' => $user]);
 	}
 
 
