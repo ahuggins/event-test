@@ -5,7 +5,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Events extends Eloquent implements UserInterface, RemindableInterface {
+class Tags extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
@@ -14,7 +14,7 @@ class Events extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var string
 	 */
-	protected $table = 'events';
+	protected $table = 'tags';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -23,8 +23,5 @@ class Events extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
-	public function tags()
-	{
-		return $this->belongsToMany('Tags', 'events-tags-relation');
-	}
+	
 }

@@ -33,6 +33,32 @@ class EventsTableSeeder extends Seeder {
                 'is_private' => 0,
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
+            ),
+            array(
+                'title'      => '$4 Flight Night @ Whole Foods',
+                'start_time' => new DateTime,
+                'end_time' => new DateTime,
+                'location'   => 'demo lat-log',
+                'created_by'   => 'Lex.Events',
+                'hosted_by'   => 'Whole Foods',
+                'event_type' => 'Promotion Drinking Event',
+                'description'   => 'Delicious beer and food pairings every Friday at the Lexington Green Whole Foods location. A great happy hour event to start your weekend!',
+                'is_private' => 0,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
+            ),
+            array(
+                'title'      => 'Led Zeppelin',
+                'start_time' => new DateTime,
+                'end_time' => new DateTime,
+                'location'   => 'demo lat-log',
+                'created_by'   => 'Cosmic Charlies',
+                'hosted_by'   => 'Cosmic Charlies',
+                'event_type' => 'Music',
+                'description'   => 'Rock your asses off with the legendary Led Zeppelin at Cosmic Charlies. One night only. Don\'t miss out! ',
+                'is_private' => 0,
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
             )
         );
 

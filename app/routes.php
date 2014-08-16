@@ -27,8 +27,9 @@ Route::get('admin', function()
 
 Route::get('/events', function()
 {
-	$events = Events::all();
-	return View::make('events/all', ['events' => $events]);
+	$events = Events::with('Tags')->get();
+	$tags = Tags::all();
+	return View::make('events/all', ['events' => $events, 'tags' => $tags]);
 });
 Route::get('/event/create', array('as' => 'event.create', 'uses' => 'EventAdminController@create') )->before('auth');
 Route::resource('eventAdmin', 'EventAdminController');
