@@ -29,7 +29,7 @@ class EventsTableSeeder extends Seeder {
                 'created_by'   => 'Nick Such',
                 'hosted_by'   => 'Awesome Inc',
                 'event_type' => 'Competition',
-                'description'   => '5 Across is an informal gathering of entrepreneurs, investors, and service providers from Lexington, KY. Each 5 Across meeting features presentations from local entrepreneurs who pitch their ideas to a panel of judges.',
+                'description'   => '5 Across is a gathering of entrepreneurs, investors, and service providers from Lexington, KY where entrepreneurs pitch their ideas to a panel of judges.',
                 'is_private' => 0,
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,

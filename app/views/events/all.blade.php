@@ -61,23 +61,26 @@
 	</div>
 	<div class="main">
 		<div class="container">
-			<h3>Today</h3>
-			<div id="events">
-				@foreach($events as $event)
-					<div class="event @foreach($event['Tags'] as $tag) {{ $tag['filter_text'] }} @endforeach">
-						<img src="//lorempixel.com/300/150/nightlife/{{ rand(1,10) }}" alt="" class="img-responsive">
-						<div class="details">
-						<?php Debugbar::addMessage($event); ?>
-							<h3>{{ $event['title'] }}</h3>
-							<div class="time">
-							Time: {{ date( 'h:i A', strtotime( $event['start_time'] ) ) }} - {{ date( 'h:i A', strtotime( $event['end_time'] ) ) }} 
-							</div>	
-							<div class="description">
-								{{ $event['description'] }}
-							</div>
-						</div> 
-					</div>
-				@endforeach
+		<h3>Today</h3>
+			<div class="row">
+				
+				<div id="events">
+					@foreach($events as $event)
+						<div class="event col-md-3 clearfix @foreach($event['Tags'] as $tag) {{ $tag['filter_text'] }} @endforeach">
+							<img src="//lorempixel.com/750/350/nightlife/{{ rand(1,10) }}" alt="" class="img-responsive">
+							<div class="details">
+							<?php Debugbar::addMessage($event); ?>
+								<h3>{{ $event['title'] }}</h3>
+								<div class="time">
+								Time: {{ date( 'h:i A', strtotime( $event['start_time'] ) ) }} - {{ date( 'h:i A', strtotime( $event['end_time'] ) ) }} 
+								</div>	
+								<div class="description">
+									{{ $event['description'] }}
+								</div>
+							</div> 
+						</div>
+					@endforeach
+				</div>
 			</div>
 		</div>
 	</div>

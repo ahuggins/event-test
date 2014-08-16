@@ -61,7 +61,14 @@ class TagsTableSeeder extends Seeder {
                 'filter_text'   => 'trivia',
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
+            ),
+            array(
+                'tag_text'      => 'Happy Hour',
+                'filter_text'   => 'happy-hour',
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
             )
+
         );
 
         DB::table('tags')->insert( $tags );
