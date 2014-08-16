@@ -2,8 +2,8 @@ body {
 	background: #ddd;
 	font-family: 'Lato';
 }
-.event:first-child {
-	margin: 0;
+.event {
+	margin-bottom: 10px;
 }
 .event h3 {
 	margin: 0 0 5px 0;
@@ -11,6 +11,7 @@ body {
 .event img {
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
+	min-height: 170px;
 }
 .event .details {
 	padding: 15px;
@@ -65,4 +66,24 @@ body {
 	margin-bottom: 10px;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
+}
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+	.event img {
+		min-height: initial;
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
 }

@@ -6,10 +6,11 @@
 
 @section('ready')
 <script>
-	$( function() {
+	$(document).ready(function() {
 	  // init Isotope
 	  var $container = $('#events').isotope({
-	    itemSelector: '.event'
+	    itemSelector: '.event',
+	    layoutMode: 'masonry'
 	  });
 
 	  // store filter for each group
@@ -63,7 +64,6 @@
 		<div class="container">
 		<h3>Today</h3>
 			<div class="row">
-				
 				<div id="events">
 					@foreach($events as $event)
 						<div class="event col-md-3 clearfix @foreach($event['Tags'] as $tag) {{ $tag['filter_text'] }} @endforeach">
