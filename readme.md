@@ -1,25 +1,27 @@
-## Laravel PHP Framework
+# Events
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+Events is a web application built by the contributors listed on Github. Supposed to be a simple easy way to list the events of a city. Currently still a work in progress, but is being worked on (albeit slowly, because we all have day jobs). The main purpose of the project was to learn about the excellent Laravel framework, as well as practicing a Git workflow with multiple contributors. 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+## Short Term To Do's
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+* Ability to add tags to an event when creating an event...using the events-tags-relation table
+* Getting actual Date information on Events (no longer using the seed data)
+* Add Mapping to an event
+* Develop an Event View
+* A way to update Tag options (Create Tag)
+* Organizing events correctly when viewing "All Events". By "today", "Tomorrow","Next Week","Later"
+* When user logs in, should show them a "Dashboard" with the events they are "watching." Then they can view All Events to add more to their watchlist. Watchlist could be used to send email notifications.
+* Ability to add custom images to an event. Probably limit to a few. Sponsored events would be able to add more.
 
-## Official Documentation
+## Long Term To Do's
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
-
-### Contributing To Laravel
-
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
-
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+* Would be awesome to integrate with Facebook
+	* Bring in events from Facebook data (pulling from people who have allowed access by Events)
+	* Allow people to RSVP to an event using Facebook profile
+* Add a "Specials" or "Deals" offering to the site
+	* This could be handled as advertising (pay to have a special listed)
+* Along the same lines, perhaps a "Job Listing" area as well
+	* Pay to have job listed
+* Notifications: Email and/or Text
+	* Thinking each week an email is sent reminding people of events they have said they are going to, or would just be interested in
