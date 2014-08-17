@@ -12,8 +12,8 @@
 */
 
 
-Route::get('/login', 'SessionController@create');
-Route::get('/logout', 'SessionController@destroy');
+Route::get('login', 'SessionController@create');
+Route::get('logout', 'SessionController@destroy');
 
 Route::resource('session', 'SessionController', ['only' => ['create', 'store', 'destroy']]);
 
@@ -25,13 +25,18 @@ Route::get('admin', function()
 	return 'Admin Page!';
 })->before('auth');
 
-Route::get('/events', function()
+Route::get('events', function()
 {
 	$events = Events::with('Tags')->get();
 	$tags = Tags::all();
 	return View::make('events/all', ['events' => $events, 'tags' => $tags]);
 });
-Route::get('/event/create', array('as' => 'event.create', 'uses' => 'EventAdminController@create') )->before('auth');
+Route::get('event/{id}', function($id)
+{
+	$event = Events::find($id);
+	return View::make('events/event', ['event' => $event]);
+});
+Route::get('event/create', array('as' => 'event.create', 'uses' => 'EventAdminController@create') )->before('auth');
 Route::resource('eventAdmin', 'EventAdminController');
 
 Route::get('/', function()
