@@ -10,7 +10,7 @@ Events is a web application built by the contributors listed on Github. Supposed
 * Add Mapping to an event
 * ~~Develop an Event View~~
 * A way to update Tag options (Create Tag)
-* Organizing events correctly when viewing "All Events". By "today", "Tomorrow","Next Week","Later"
+* ~~Organizing events correctly when viewing "All Events". By "today", "Tomorrow","Next Week","Later"~~
 * When user logs in, should show them a "Dashboard" with the events they are "watching." Then they can view All Events to add more to their watchlist. Watchlist could be used to send email notifications.
 * Ability to add custom images to an event. Probably limit to a few. Sponsored events would be able to add more.
 
