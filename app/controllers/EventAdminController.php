@@ -39,6 +39,7 @@ class EventAdminController extends \BaseController {
 		$event->end_time = date('Y-m-d H:i:s', strtotime(Input::get('end_time')));
 		$event->location = Input::get('location');
 		$event->description = Input::get('description');
+		$event->hosted_by = Input::get('hosted_by');
 		$event->created_by = Auth::user()->username;
 		$event->event_type = Input::get('event_type');
 		if (Input::get('is_private')) {

@@ -24,7 +24,8 @@
 				{{ Form::text('title', null, array('placeholder' => 'Title', 'class' => 'form-control', 'autofocus')) }}
 				{{ Form::text('start_time', null, array('placeholder' => 'Start Time', 'class' => 'form-control datepicker', 'data-datepicker' => 'datepicker')) }}
 				{{ Form::text('end_time', null, array('placeholder' => 'End Time', 'class' => 'form-control datepicker', 'data-datepicker' => 'datepicker')) }}
-				{{ Form::text('location', null, array('placeholder' => 'Location', 'class' => 'form-control')) }}
+				{{ Form::text('location', null, array('placeholder' => 'Address', 'class' => 'form-control')) }}
+				{{ Form::text('hosted_by', null, array('placeholder' => 'What/who is hosting? Business, Group, or Person?', 'class' => 'form-control')) }}
 				{{ Form::textarea('description', null, array('placeholder' => 'A Short description of the event', 'class' => 'form-control')) }}
 				<div class="checkbox">
 					<label>
