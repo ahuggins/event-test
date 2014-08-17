@@ -6,7 +6,7 @@ Events is a web application built by the contributors listed on Github. Supposed
 ## Short Term To Do's
 
 * Ability to add tags to an event when creating an event...using the events-tags-relation table
-* Getting actual Date information on Events (no longer using the seed data)
+* ~~Getting actual Date information on Events (no longer using the seed data)~~
 * Add Mapping to an event
 * Develop an Event View
 * A way to update Tag options (Create Tag)
