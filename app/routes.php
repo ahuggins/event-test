@@ -27,7 +27,8 @@ Route::get('admin', function()
 
 Route::get('events', function()
 {
-	$events = Events::with('Tags')->get();
+	// $events = Events::with('Tags')->where( DB::raw('DAY(start_time)'), '=', date('j'))->get();
+	$events = Events::with('Tags')->orderBy('start_time', 'ASC')->whereBetween('start_time', array( date('Y-m-d', strtotime('now')), date('Y-m-d', strtotime('+30 days'))) )->get();
 	$tags = Tags::all();
 	return View::make('events/all', ['events' => $events, 'tags' => $tags]);
 });

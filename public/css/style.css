@@ -2,6 +2,17 @@ body {
 	background: #ddd;
 	font-family: 'Lato';
 }
+.btn-default:hover, .btn-default:focus {
+	background: #005daa;
+	color: #fff;
+}
+.is-checked {
+	background: #005daa;
+	color: #fff;
+}
+.main {
+	margin: 30px 0 0 0;
+}
 .event {
 	margin-bottom: 10px;
 }
