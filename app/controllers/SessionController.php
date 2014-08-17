@@ -27,6 +27,7 @@ class SessionController extends \BaseController {
 			'password' => $input['password'],
 		]);
 		if($attempt) return Redirect::intended('/')->with('flash_message', 'You have been logged in!');
+		return Redirect::to('/session/create')->with('flash_message', '<span class="bg-danger">There was an error with the info you provided!</span>');
 	}
 
 	/**

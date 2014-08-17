@@ -34,7 +34,7 @@ class UsersController extends \BaseController {
 	{
 
 
-		$validation = Validator::make(Input::all(), ['email' => 'required', 'password' => 'required']);
+		$validation = Validator::make(Input::all(), ['email' => 'required|email|unique:users', 'password' => 'required', 'username' => 'required|unique:users']);
 
 		if ($validation->fails()){
 			return Redirect::back()->withInput()->withErrors($validation->messages());
@@ -42,6 +42,7 @@ class UsersController extends \BaseController {
 
 		$user = new User();
 		$user->email = Input::get('email');
+		$user->username = Input::get('username');
 		$user->password = Hash::make(Input::get('password'));
 		$user->save();
 
