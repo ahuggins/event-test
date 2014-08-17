@@ -50,7 +50,24 @@ App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
 });
+// The following is for error handling. Will turn on when go live, but don't need it for developing
+// App::error(function($exception, $code)
+// {
+//     switch ($code)
+//     {
+//         case 403:
+//             return Response::view('errors.403', array(), 403);
 
+//         case 404:
+//             return Response::view('errors.404', array(), 404);
+
+//         case 500:
+//             return Response::view('errors.500', array(), 500);
+
+//         default:
+//             return Response::view('errors.default', array(), $code);
+//     }
+// });
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler
