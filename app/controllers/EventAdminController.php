@@ -35,8 +35,8 @@ class EventAdminController extends \BaseController {
 		// return 'Store the event';
 		$event = new Events();
 		$event->title = Input::get('title');
-		$event->start_time = Input::get('start_time');
-		$event->end_time = Input::get('end_time');
+		$event->start_time = date('Y-m-d H:i:s', strtotime(Input::get('start_time')));
+		$event->end_time = date('Y-m-d H:i:s', strtotime(Input::get('end_time')));
 		$event->location = Input::get('location');
 		$event->description = Input::get('description');
 		$event->created_by = Auth::user()->username;
