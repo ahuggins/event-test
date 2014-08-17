@@ -28,7 +28,7 @@
 				{{ Form::textarea('description', null, array('placeholder' => 'A Short description of the event', 'class' => 'form-control')) }}
 				<div class="checkbox">
 					<label>
-				    	{{ Form::checkbox('is_private', 0, null) }} Is the event private?
+				    	{{ Form::checkbox('is_private', 1, null) }} Is the event private?
 				    </label>
 				</div>
 

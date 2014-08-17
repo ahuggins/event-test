@@ -40,8 +40,13 @@ class EventAdminController extends \BaseController {
 		$event->location = Input::get('location');
 		$event->description = Input::get('description');
 		$event->created_by = Auth::user()->username;
+		$event->event_type = Input::get('event_type');
+		if (Input::get('is_private')) {
+			$event->is_private = 1;
+		}
 		$event->save();
-		return Redirect::to('/events');
+		// return Redirect::to('/events');
+		return $event;
 	}
 
 
