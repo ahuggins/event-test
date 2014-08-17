@@ -32,14 +32,14 @@ Route::get('events', function()
 	$tags = Tags::all();
 	return View::make('events/all', ['events' => $events, 'tags' => $tags]);
 });
+
+Route::get('event/create', array('as' => 'event.create', 'uses' => 'EventAdminController@create') )->before('auth');
+Route::resource('eventAdmin', 'EventAdminController');
 Route::get('event/{id}', function($id)
 {
 	$event = Events::find($id);
 	return View::make('events/event', ['event' => $event]);
 });
-Route::get('event/create', array('as' => 'event.create', 'uses' => 'EventAdminController@create') )->before('auth');
-Route::resource('eventAdmin', 'EventAdminController');
-
 Route::get('/', function()
 {
 	return View::make('events/test');
