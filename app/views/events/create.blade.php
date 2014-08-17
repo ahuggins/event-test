@@ -5,7 +5,7 @@
 	<div>
 		<div class="container">
 		<h2>Create A New Event</h2>
-			{{ Form::open( ['route' => 'eventAdmin.store'] ) }}
+			{{ Form::open( ['route' => 'eventAdmin.store', 'class' => 'form-signin'] ) }}
 				{{ Form::text('title', null, array('placeholder' => 'Title', 'class' => 'form-control', 'autofocus')) }}
 				{{ Form::text('start_time', null, array('placeholder' => 'Start Time', 'class' => 'form-control')) }}
 				{{ Form::text('end_time', null, array('placeholder' => 'End Time', 'class' => 'form-control')) }}
@@ -18,7 +18,7 @@
 				</div>
 
 				{{ Form::text('event_type', null, array('placeholder' => 'Event Type', 'class' => 'form-control')) }}
-				{{ Form::submit() }}
+				{{ Form::submit('Create Event', array('class' => 'btn btn-lg btn-primary btn-block')) }}
 			{{ Form::close() }}
 		</div>
 	</div>

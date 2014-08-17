@@ -4,7 +4,7 @@
 	<div class="login">
 		<div class="container">
 
-		 		{{ Form::open( ['route' => 'users.store', 'class' => 'form-signin'] ) }}
+		 		{{ Form::open( ['route' => 'users.store', 'class' => 'form-signin narrow'] ) }}
 
 				<h2 class="form-signin-heading">Create Account</h2>
 				<div>

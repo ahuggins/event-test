@@ -4,7 +4,7 @@
 	<div class="login">
 		<div class="container">
 
-		 	{{ Form::open( ['route' => 'session.store', 'class' => 'form-signin'] ) }}
+		 	{{ Form::open( ['route' => 'session.store', 'class' => 'form-signin narrow'] ) }}
 
 		 		<h2 class="form-signin-heading">Login Below</h2>
 		 		{{ Session::get('flash_message') }}
