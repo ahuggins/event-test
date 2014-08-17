@@ -45,8 +45,8 @@ class EventAdminController extends \BaseController {
 			$event->is_private = 1;
 		}
 		$event->save();
-		// return Redirect::to('/events');
-		return $event;
+		return Redirect::to('/events');
+		// return $event;
 	}
 
 
