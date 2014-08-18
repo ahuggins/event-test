@@ -1,22 +1,29 @@
 @extends('layouts/default')
 
 @section('scripts')
+<!-- Add Scripts here, will be below jQuery -->
  {{ HTML::script('js/moment.js') }}
  {{ HTML::script('js/bootstrap-datetimepicker.min.js') }}
+ {{ HTML::script('js/bootstrap-tokenfield.min.js') }}
+ {{ HTML::script('js/typeahead.bundle.min.js') }}
+<!-- Add Styles here, will be below Twitter Bootstrap -->
  {{ HTML::style('css/bootstrap-datetimepicker.min.css') }}
+ {{ HTML::style('css/bootstrap-tokenfield.min.css') }}
+ {{ HTML::style('css/tokenfield-typeahead.min.css') }}
+
 @stop
 
 @section('ready')
 	 <script type="text/javascript">
         $(function () {
             $('.datepicker').datetimepicker();
+            $('#tokenfield-typeahead').tokenfield({});
         });
     </script>
 @stop
 
 
 @section('Content')
-
 	<div>
 		<div class="container">
 		<h2>Create A New Event</h2>
@@ -32,8 +39,7 @@
 				    	{{ Form::checkbox('is_private', 1, null) }} Is the event private?
 				    </label>
 				</div>
-
-				{{ Form::text('event_type', null, array('placeholder' => 'Event Type', 'class' => 'form-control')) }}
+				{{ Form::text('event_type', null, array('placeholder' => 'Add Event Types, Type and hit enter', 'class' => 'form-control tokenfield', 'id' => 'tokenfield-typeahead')) }}
 				{{ Form::submit('Create Event', array('class' => 'btn btn-lg btn-primary btn-block')) }}
 			{{ Form::close() }}
 		</div>

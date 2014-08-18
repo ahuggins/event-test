@@ -83,7 +83,12 @@
 									$class[] = 'today';
 								} elseif ( date('Ymd', strtotime('+1 day') ) == date('Ymd', strtotime($event->start_time) ) ) {
 									$class[] = 'tomorrow';
-								} elseif( date('Ymd', strtotime('next Thursday, next Friday, next Saturday, next Sunday') ) == date('Ymd', strtotime($event->start_time) ) ) {
+								} elseif(
+									date('Ymd', strtotime('next Thursday') ) == date('Ymd', strtotime($event->start_time) ) ||
+									date('Ymd', strtotime('next Friday') ) == date('Ymd', strtotime($event->start_time) ) ||
+									date('Ymd', strtotime('next Saturday') ) == date('Ymd', strtotime($event->start_time) ) ||
+									date('Ymd', strtotime('next Sunday') ) == date('Ymd', strtotime($event->start_time) ) 
+									) {
 									$class[] = "this-weekend";
 								}
 								if( ( date('W') == date('W', strtotime($event->start_time) ) ) )

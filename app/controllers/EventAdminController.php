@@ -46,6 +46,18 @@ class EventAdminController extends \BaseController {
 			$event->is_private = 1;
 		}
 		$event->save();
+
+		$event_id = $event->id;
+		$tags = explode(',', Input::get('event_type'));
+		foreach ($tags as $tag) {
+			$db_tags = Tags::where('tag_text', '=', trim($tag))->get();
+				foreach ($db_tags as $info) {
+					$insert = new EventsTagsRelation();
+					$insert->events_id = $event_id;
+					$insert->tags_id = $info->id;
+					$insert->save();			
+				}
+		}
 		return Redirect::to('/events');
 		// return $event;
 	}
