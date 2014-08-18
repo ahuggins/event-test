@@ -2,17 +2,19 @@
 
 @section('scripts')
 {{ HTML::script('js/isotope.pkgd.min.js'); }}
+{{ HTML::script('js/imagesloaded.pkgd.min.js'); }}
 @stop
 
 @section('ready')
 <script>
 	$(document).ready(function() {
-	  // init Isotope
-	  var $container = $('#events').isotope({
-	    itemSelector: '.event',
-	    layoutMode: 'masonry'
-	  });
-
+		var $container = $('#events').imagesLoaded( function() {
+		  $container.isotope({
+		    itemSelector: '.event',
+		    layoutMode: 'masonry'
+		  });
+		});
+	  
 	  // store filter for each group
 	  var filters = {};
 
@@ -103,7 +105,7 @@
 							 {{ Debugbar::addMessage($class, 'class'); }}
 							 {{ Debugbar::addMessage(date('W', strtotime('+0 days'))) }}
 							 {{ Debugbar::addMessage(date('W', strtotime($event->start_time))) }}
-							 <div class="event col-md-3 clearfix @if( is_array($class) ) {{ implode(' ', $class) }} @endif @foreach($event['Tags'] as $tag) {{ $tag['filter_text'] }} @endforeach">
+							 <div class="event col-xs-12 col-sm-6 col-md-4 col-lg-3 clearfix @if( is_array($class) ) {{ implode(' ', $class) }} @endif @foreach($event['Tags'] as $tag) {{ $tag['filter_text'] }} @endforeach">
 								<img src="//lorempixel.com/750/350/nightlife/{{ rand(1,10) }}" alt="" class="img-responsive">
 								<div class="details">
 									<h3>{{ $event['title'] }}</h3>
