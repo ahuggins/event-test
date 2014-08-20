@@ -5,6 +5,7 @@
 		<div class="container">
 			<div class="row">
 				<h1 class="text-center">Coming Soon!!</h1>
+				{{ $_ENV }}
 				{{ dd(App::environment()) }}
 			</div>
 		</div>
