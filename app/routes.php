@@ -38,9 +38,9 @@ Route::resource('eventAdmin', 'EventAdminController');
 Route::get('event/{id}', function($id)
 {
 	$event = Events::find($id);
-	return View::make('events/event', ['event' => $event]);
+	return View::make('events.event', ['event' => $event]);
 });
 Route::get('/', function()
 {
-	return View::make('events/test');
+	return View::make('events.soon');
 });
