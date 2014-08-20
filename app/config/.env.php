@@ -1,3 +1,5 @@
 <?php 
 
-return array();
+return array(
+	'DB_HOST' => 'localhost',
+	);
