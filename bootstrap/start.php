@@ -24,10 +24,15 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(function()
-{
-	return 'production';
-});
+$env = $app->detectEnvironment(array(
+	'local' => array('homestead'),
+	'production' => array('lex.events')
+));
+
+// $env = $app->detectEnvironment(function()
+// {
+// 	return 'production';
+// });
 
 /*
 |--------------------------------------------------------------------------
