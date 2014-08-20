@@ -1,5 +1,4 @@
 <?php 
 
-return array(
-	'DB_HOST' => 'localhost',
-	);
+putenv('ENV=production');
+return array();
