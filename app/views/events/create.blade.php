@@ -33,7 +33,8 @@
 				{{ Form::text('end_time', null, array('placeholder' => 'End Time', 'class' => 'form-control datepicker', 'data-datepicker' => 'datepicker')) }}
 				{{ Form::text('location', null, array('placeholder' => 'Address', 'class' => 'form-control')) }}
 				{{ Form::text('hosted_by', null, array('placeholder' => 'What/who is hosting? Business, Group, or Person?', 'class' => 'form-control')) }}
-				{{ Form::textarea('description', null, array('placeholder' => 'A Short description of the event', 'class' => 'form-control')) }}
+				{{ Form::textarea('description', null, array('placeholder' => 'MAX 140 characters', 'class' => 'form-control')) }}
+				{{ Form::textarea('full_details', null, array('placeholder' => 'Go nuts', 'class' => 'form-control')) }}
 				<div class="form-group">
 				    {{ Form::label('event_image', 'Add Image') }}
 					{{ Form::file('event_image') }}
