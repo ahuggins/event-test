@@ -46,6 +46,7 @@ class CreateEventsTable extends Migration {
 		});
 	}
 
+
 	/**
 	 * Reverse the migrations.
 	 *
