@@ -12,7 +12,7 @@
 		<h3>{{ $event->title }}</h3>
 			<div class="row">
 				<div class="col-md-7">
-					<img src="//lorempixel.com/750/350/nightlife/{{ rand(1,10) }}" alt="" class="img-responsive">
+					<img src="{{ asset('images') }}/{{ $event->event_image }}" alt="" class="img-responsive">
 					<h3>Description:</h3>
 					{{ $event->description }}			
 				</div>

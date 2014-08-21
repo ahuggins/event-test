@@ -45,7 +45,15 @@ class EventAdminController extends \BaseController {
 		if (Input::get('is_private')) {
 			$event->is_private = 1;
 		}
+		if (!empty(Input::hasFile('event_image'))) {
+			$file = Input::file('event_image');
+			$name = time() . '-' . $file->getClientOriginalName();
+			$file = $file->move(public_path() . '/images/', $name);
+			$event->event_image = $name;
+		}
 		$event->save();
+
+
 
 		$event_id = $event->id;
 		$tags = explode(',', Input::get('event_type'));

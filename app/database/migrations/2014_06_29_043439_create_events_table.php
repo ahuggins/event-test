@@ -23,6 +23,7 @@ class CreateEventsTable extends Migration {
 			$table->string('event_type');
 			$table->text('description');
 			$table->boolean('is_private')->default(false);
+			$table->string('event_image');
 			$table->softDeletes();
 			$table->timestamps();
 		});
