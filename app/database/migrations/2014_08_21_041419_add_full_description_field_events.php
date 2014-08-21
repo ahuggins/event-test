@@ -14,7 +14,7 @@ class AddFullDescriptionFieldEvents extends Migration {
 	{
 		Schema::table('events', function($table)
 		{
-		    $table->string('full_details');
+		    $table->longText('full_details');
 		});
 	}
 

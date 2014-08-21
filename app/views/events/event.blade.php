@@ -14,7 +14,9 @@
 				<div class="col-md-7">
 					<img src="{{ asset('images') }}/{{ $event->event_image }}" alt="" class="img-responsive">
 					<h3>Description:</h3>
-					{{ $event->description }}			
+					{{ $event->description }}
+					<h3>Full Details:</h3>	
+					{{ $event->full_details }}
 				</div>
 				<div class="col-md-5">
 					Start Date:<br />

@@ -6,6 +6,7 @@
  {{ HTML::script('js/bootstrap-datetimepicker.min.js') }}
  {{ HTML::script('js/bootstrap-tokenfield.min.js') }}
  {{ HTML::script('js/typeahead.bundle.min.js') }}
+ {{ HTML::script('js/ckeditor/ckeditor/ckeditor.js') }}
 <!-- Add Styles here, will be below Twitter Bootstrap -->
  {{ HTML::style('css/bootstrap-datetimepicker.min.css') }}
  {{ HTML::style('css/bootstrap-tokenfield.min.css') }}
@@ -35,6 +36,9 @@
 				{{ Form::text('hosted_by', null, array('placeholder' => 'What/who is hosting? Business, Group, or Person?', 'class' => 'form-control')) }}
 				{{ Form::textarea('description', null, array('placeholder' => 'MAX 140 characters', 'class' => 'form-control')) }}
 				{{ Form::textarea('full_details', null, array('placeholder' => 'Go nuts', 'class' => 'form-control')) }}
+				<script>
+	                CKEDITOR.replace( 'full_details' );
+	            </script>
 				<div class="form-group">
 				    {{ Form::label('event_image', 'Add Image') }}
 					{{ Form::file('event_image') }}
