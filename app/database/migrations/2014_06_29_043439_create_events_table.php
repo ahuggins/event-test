@@ -40,6 +40,7 @@ class CreateEventsTable extends Migration {
 		Schema::create('events-tags-relation',function($table){
 			$table->engine = 'InnoDB';
 			$table->integer('events_id')->unsigned()->index();
+			$table->foreign('events_id')->references('id')->on('events')->onDelete('cascade');
 			$table->integer('tags_id')->unsigned()->index();
 			$table->foreign('tags_id')->references('id')->on('tags')->onDelete('cascade');
 		});
