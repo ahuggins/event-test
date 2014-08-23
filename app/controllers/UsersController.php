@@ -71,7 +71,7 @@ class UsersController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		return 'test';
 	}
 
 
@@ -81,9 +81,14 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update()
 	{
-		//
+		$user = User::find(Auth::user()->id);
+		$user->email = Input::get('email');
+		$user->first_name = Input::get('first_name');
+		$user->last_name = Input::get('last_name');
+		$user->save();
+		return Redirect::route('events');
 	}
 
 
