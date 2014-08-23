@@ -83,6 +83,12 @@ class UsersController extends \BaseController {
 	 */
 	public function update()
 	{
+		$validation = Validator::make(Input::all(), ['email' => 'required|email|unique:users']);
+
+		if ($validation->fails()){
+			return Redirect::back()->withInput()->withErrors($validation->messages());
+		}
+
 		$user = User::find(Auth::user()->id);
 		$user->email = Input::get('email');
 		$user->first_name = Input::get('first_name');
