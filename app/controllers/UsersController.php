@@ -83,16 +83,17 @@ class UsersController extends \BaseController {
 	 */
 	public function update()
 	{
-		$validation = Validator::make(Input::all(), ['email' => 'required|email|unique:users']);
-
-		if ($validation->fails()){
-			return Redirect::back()->withInput()->withErrors($validation->messages());
-		}
-
 		$user = User::find(Auth::user()->id);
 		$user->email = Input::get('email');
 		$user->first_name = Input::get('first_name');
 		$user->last_name = Input::get('last_name');
+
+		$validation = Validator::make(Input::all(), ['email' => 'required|email|unique:users']);
+
+		if ( $validation->fails() && ( Input::get( 'email' ) != Auth::user()->email ) ){
+			return Redirect::back()->withInput()->withErrors($validation->messages());
+		}
+		
 		$user->save();
 		return Redirect::route('events');
 	}
@@ -111,3 +112,4 @@ class UsersController extends \BaseController {
 
 
 }
+
