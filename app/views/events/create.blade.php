@@ -12,7 +12,7 @@
  {{ HTML::style('css/bootstrap-tokenfield.min.css') }}
  {{ HTML::style('css/tokenfield-typeahead.min.css') }}
  {{ HTML::style('css/summernote.css') }}
- {{ HTML::style('css/summernote-bs3.css') }}
+ 
  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 
 
