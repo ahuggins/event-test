@@ -52,13 +52,13 @@
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							@if(Auth::user())
-								<li><a href="{{ URL::to('event.create') }}">Create Event</a></li>
+								<li><a href="{{ URL::to('event/create') }}">Create Event</a></li>
 								<li><a href="{{ URL::to('profile/edit') }}">Edit Profile</a></li>
 								<li class="divider"></li>
 								<li><a href="{{ URL::to('/logout') }}">Logout</a></li>
 							@else
 								<li><a href="{{ URL::to('/login') }}">Sign In</a></li>
-								<li><a href="{{ URL::to('/users.create') }}">Sign Up</a></li>
+								<li><a href="{{ URL::to('/users/create') }}">Sign Up</a></li>
 							@endif						
 						</ul>
 					</li>
