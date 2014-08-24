@@ -86,7 +86,12 @@ body {
 .form-signin input[type="submit"] {
 	margin-top: 10px;
 }
-
+.note-editable {
+	background: #fff;
+}
+.btn-toolbar {
+	margin-left: 0px;
+}
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 

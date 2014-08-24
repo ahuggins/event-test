@@ -26,15 +26,14 @@ Route::get('profile/edit', function()
 
 Route::get('events', array('as' => 'events', function()
 {
-	// $events = Events::with('Tags')->where( DB::raw('DAY(start_time)'), '=', date('j'))->get();
 	$events = Events::with('Tags')->orderBy('start_time', 'ASC')->whereBetween('start_time', array( date('Y-m-d', strtotime('now')), date('Y-m-d', strtotime('+30 days'))) )->get();
 	$tags = Tags::all();
 	return View::make('events/all', ['events' => $events, 'tags' => $tags]);
 }));
 
-Route::get('event.create', array('as' => 'event.create', 'uses' => 'EventAdminController@create') )->before('auth');
+Route::get('event/create', array('as' => 'event.create', 'uses' => 'EventAdminController@create') )->before('auth');
 Route::resource('eventAdmin', 'EventAdminController');
-Route::get('event.{id}', function($id)
+Route::get('event/{id}', function($id)
 {
 	$event = Events::find($id);
 	return View::make('events.event', ['event' => $event]);
