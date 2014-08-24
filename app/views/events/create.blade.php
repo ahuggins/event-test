@@ -32,6 +32,26 @@
 				  ],
 				  height: 300
 				});
+            $.fn.extend( {
+		        limiter: function(limit, elem) {
+		            $(this).on("keyup focus", function() {
+		                setCount(this, elem);
+		            });
+		            function setCount(src, elem) {
+		                var chars = src.value.length;
+		                if (chars > limit) {
+		                    src.value = src.value.substr(0, limit);
+		                    chars = limit;
+		                }
+		                elem.html( limit - chars );
+		            }
+		            setCount($(this)[0], elem);
+		        }
+		    });
+            
+            var elem = $("#chars");
+			$("#description").limiter(140, elem);
+
 
              $(".event-type").chosen();
         });
@@ -54,9 +74,10 @@
 							{{ Form::text('end_time', null, array('placeholder' => 'End Time', 'class' => 'form-control datepicker', 'data-datepicker' => 'datepicker')) }}
 							{{ Form::text('location', null, array('placeholder' => 'Address', 'class' => 'form-control')) }}
 							{{ Form::text('hosted_by', null, array('placeholder' => 'What/who is hosting? Business, Group, or Person?', 'class' => 'form-control')) }}
-							{{ Form::textarea('description', null, array('placeholder' => 'MAX 140 characters', 'class' => 'form-control')) }}
+							{{ Form::text('description', null, array('placeholder' => 'Description (Maximum 140 characters)', 'class' => 'form-control', 'id' => 'description')) }}
+							<div id="chars">140</div>
 							<div class="form-group">
-								{{ Form::textarea('full_details', null, array('placeholder' => 'Go nuts', 'class' => 'form-control summernote')) }}
+								{{ Form::textarea('full_details', 'Full Event Details', array('placeholder' => 'Go nuts', 'class' => 'form-control summernote')) }}
 							</div>
 						</div>
 						<div class="col-md-3">
