@@ -53,7 +53,9 @@
 			$("#description").limiter(140, elem);
 
 
-             $(".event-type").chosen();
+             $(".event-type").chosen({
+             	single_backstroke_delete: false,
+             });
         });
     </script>
 @stop
