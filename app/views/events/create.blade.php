@@ -48,10 +48,8 @@
 		            setCount($(this)[0], elem);
 		        }
 		    });
-            
             var elem = $("#chars");
 			$("#description").limiter(140, elem);
-
 
              $(".event-type").chosen({
              	single_backstroke_delete: false,
@@ -66,9 +64,18 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h2>Create A New Event</h2>
+					@if ($event)
+						<h2>Edit {{ $event->title }}</h2>
+					@else
+						<h2>Create A New Event</h2>
+					@endif
 				</div>
-					{{ Form::open( ['route' => 'eventAdmin.store', 'class' => 'form-signin', 'files' => true] ) }}
+				@if ($event)
+					{{ Form::model($event, ['method' => 'PATCH', 'route' => ['eventAdmin.update', $event->id], 'class' => 'form-signin', 'files' => true] ) }}
+				@else
+					{{ Form::model($event, ['route' => 'eventAdmin.store', 'class' => 'form-signin', 'files' => true] ) }}
+				@endif
+				
 						<div class="col-md-9">
 						
 							{{ Form::text('title', null, array('placeholder' => 'Title', 'class' => 'form-control', 'autofocus')) }}
@@ -79,7 +86,8 @@
 							{{ Form::text('description', null, array('placeholder' => 'Description (Maximum 140 characters)', 'class' => 'form-control', 'id' => 'description')) }}
 							<div id="chars">140</div>
 							<div class="form-group">
-								{{ Form::textarea('full_details', 'Full Event Details', array('placeholder' => 'Go nuts', 'class' => 'form-control summernote')) }}
+								<label for="full_details">Full Event Details: </label>
+								{{ Form::textarea('full_details', null, array('class' => 'form-control summernote')) }}
 							</div>
 						</div>
 						<div class="col-md-3">
@@ -94,7 +102,7 @@
 							    </label>
 							</div>
 							{{ Form::select('event_type[]', $tags, null, ['multiple' => 'true', 'class' => 'event-type form-control', 'data-placeholder' => 'Select Event Tags']) }}
-							{{ Form::submit('Create Event', array('class' => 'btn btn-lg btn-primary btn-block')) }}
+							{{ Form::submit((!empty($event)?'Update Event' : 'Create Event'), array('class' => 'btn btn-lg btn-primary btn-block')) }}
 						</div>	
 				{{ Form::close() }}
 			</div> <!-- close .row -->

@@ -23,6 +23,8 @@ class Events extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
+	protected $guarded = ['id', 'created_at', 'updated_at'];
+
 	public function tags()
 	{
 		return $this->belongsToMany('Tags', 'events-tags-relation');

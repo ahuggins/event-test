@@ -22,10 +22,11 @@ class EventAdminController extends \BaseController {
 	{
 		$user = Auth::user()->username;
 		$tags = Tags::all();
+		$event = array();
 		foreach ($tags as $tag) {
 			$data[$tag['id']] = $tag['tag_text'];
 		}
-		return View::make('events.create', ['user' => $user, 'tags' => $data]);
+		return View::make('events.create', ['user' => $user, 'tags' => $data, 'event' => $event]);
 	}
 
 
@@ -93,7 +94,17 @@ class EventAdminController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$user = Auth::user()->username;
+		$tags = Tags::all();
+		$event = Events::find($id);
+		foreach ($tags as $tag) {
+			$data[$tag['id']] = $tag['tag_text'];
+		}
+		$event['event_type'] = explode(',', $event->event_type);
+		if ($user == $event->created_by) {
+			return View::make('events.create', ['user' => $user, 'tags' => $data, 'event' => $event]);	
+		}
+		return Redirect::to('/events')->withMessage('You can not edit that event.');
 	}
 
 
@@ -105,7 +116,35 @@ class EventAdminController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$db_event = Events::findOrFail($id);
+
+		// Remove all event tag relations 
+		$tags = EventsTagsRelation::where('events_id', '=', $id)->delete();
+		
+		// Add the updated event tag relations
+		foreach(Input::get('event_type') as $tag ) {
+				$insert = new EventsTagsRelation();
+				$insert->events_id = $id;
+				$insert->tags_id = $tag;
+				$insert->save();
+		}
+		
+		$image = $db_event->event_image;
+		
+		$db_event->fill(Input::all());
+		if (Input::hasFile('event_image')) {
+			$file = Input::file('event_image');
+			$name = time() . '-' . $file->getClientOriginalName();
+			$file = $file->move(public_path() . '/images/', $name);
+
+			$db_event->event_image = $name;
+
+		} else {
+			$db_event->event_image = $image;
+		}
+		$db_event->event_type = implode(',', Input::get('event_type'));
+		$db_event->save();
+		return Redirect::to('/events');
 	}
 
 

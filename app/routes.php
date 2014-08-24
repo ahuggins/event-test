@@ -38,6 +38,7 @@ Route::get('event/{id}', function($id)
 	$event = Events::find($id);
 	return View::make('events.event', ['event' => $event]);
 });
+Route::get('event/{id}/edit', array('as' => 'event.edit', 'uses' => 'EventAdminController@edit') )->before('auth');
 Route::get('/', function()
 {
 	return View::make('events.soon');

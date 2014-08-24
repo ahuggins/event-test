@@ -92,6 +92,9 @@ body {
 .btn-toolbar {
 	margin-left: 0px;
 }
+.glyphicon {
+	color: #898989;
+}
 
 
 /* Extra small devices (phones, less than 768px) */

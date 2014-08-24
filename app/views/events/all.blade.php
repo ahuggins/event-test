@@ -78,7 +78,7 @@
 			<div class="row">
 				<div id="events">
 					@foreach($events as $event)
-						<a href="event/{{ $event['id'] }}">
+						
 							<?php 
 								$class = '';
 								if ( date('Ymd') == date('Ymd', strtotime($event->start_time) ) ) {
@@ -102,23 +102,33 @@
 									$class[] = 'next-week';
 								}
 							 ?>
-							 {{ Debugbar::addMessage($class, 'class'); }}
-							 {{ Debugbar::addMessage(date('W', strtotime('+0 days'))) }}
-							 {{ Debugbar::addMessage(date('W', strtotime($event->start_time))) }}
 							 <div class="event col-xs-12 col-sm-6 col-md-4 col-lg-3 clearfix @if( is_array($class) ) {{ implode(' ', $class) }} @endif @foreach($event['Tags'] as $tag) {{ $tag['filter_text'] }} @endforeach">
-								<img src="images/{{ $event->event_image }}" alt="" class="img-responsive">
+							 	<a href="event/{{ $event['id'] }}">
+									<img src="images/{{ $event->event_image }}" alt="" class="img-responsive">
+								</a>
 								<div class="details">
-									<h3>{{ $event['title'] }}</h3>
+									<a href="event/{{ $event['id'] }}">
+										<h3>{{ $event['title'] }}</h3>
+									</a>
 									<div class="time">
-									Date: {{ date('m/d', strtotime( $event['start_time'] ) ) }}<br />
-									Time: {{ date( 'h:i A', strtotime( $event['start_time'] ) ) }} - {{ date( 'h:i A', strtotime( $event['end_time'] ) ) }} 
+										{{ date('M d', strtotime( $event['start_time'] ) ) }} @
+										{{ date( 'h:i A', strtotime( $event['start_time'] ) ) }} - {{ date( 'h:i A', strtotime( $event['end_time'] ) ) }} 
 									</div>	
 									<div class="description">
 										{{ $event['description'] }}
 									</div>
+									<div class="controls">
+										<span class="glyphicon glyphicon-plus"></span>
+										@if ($event['created_by'] == Auth::user()->username)
+											<a href="event/{{ $event['id'] }}/edit">
+												<button class="btn btn-default btn-xs pull-right">Edit</button>	
+											</a>
+										@endif
+										
+									</div>
 								</div> 
+
 							</div>
-						</a>
 					@endforeach
 				</div>
 			</div>
