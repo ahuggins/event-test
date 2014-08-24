@@ -6,9 +6,11 @@
 	<title></title>
 	{{ HTML::script('js/jquery-1.11.1.min.js'); }}
 	{{ HTML::script('js/bootstrap.min.js'); }}
-	@yield('scripts')
+	
 	
 	{{ HTML::style('css/bootstrap.min.css'); }}
+
+	@yield('scripts')
 	{{ HTML::style('css/style.css'); }}
 	<link href='http://fonts.googleapis.com/css?family=Lato:100,400,900' rel='stylesheet' type='text/css'>
 	
