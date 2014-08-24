@@ -1,4 +1,4 @@
-@extends('layouts/default')
+@extends('layouts/soon')
 
 @section('Content')
 	<div class="login">
