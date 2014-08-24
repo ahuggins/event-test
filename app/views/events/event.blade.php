@@ -12,7 +12,9 @@
 		<h3>{{ $event->title }}</h3>
 			<div class="row">
 				<div class="col-md-7">
-					
+					@if ($event->event_image)
+						<img src="{{ asset('images') }}/{{ $event->event_image }}" alt="" class="img-responsive">
+					@endif
 					<h3>Description:</h3>
 					{{ $event->description }}
 					<h3>Full Details:</h3>	
@@ -28,7 +30,7 @@
 					Hosted By:<br />
 					{{ $event->hosted_by }}<br />
 					Created By:<br />
-					{{ $event->created_by }}
+					{{ $event->created_by }}<br />
 					Event Type: <br />
 					{{ $event->event_type }}<br />
 					Map:<br />
