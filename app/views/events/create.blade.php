@@ -23,17 +23,7 @@
             $('.datepicker').datetimepicker();
             $('#tokenfield-typeahead').tokenfield({});
             $('.summernote').summernote({
-				  toolbar: [
-				    //[groupname, [button list]]
-				    ['format', ['style']], 
-				    ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
-				    ['fontsize', ['fontsize']],
-				    ['color', ['color']],
-				    ['para', ['ul', 'ol', 'paragraph']],
-				    ['insert', ['picture', 'link', 'video', 'hr']],
-				    ['misc', ['fullscreen', 'codeview', 'undo', 'redo']],
-
-				  ],
+				  
 				  height: 300
 				});
         });
