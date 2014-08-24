@@ -119,10 +119,12 @@
 									</div>
 									<div class="controls">
 										<span class="glyphicon glyphicon-plus"></span>
-										@if ($event['created_by'] == Auth::user()->username)
-											<a href="event/{{ $event['id'] }}/edit">
-												<button class="btn btn-default btn-xs pull-right">Edit</button>	
-											</a>
+										@if (Auth::guest())
+											@if ($event['created_by'] == Auth::user()->username)
+												<a href="event/{{ $event['id'] }}/edit">
+													<button class="btn btn-default btn-xs pull-right">Edit</button>	
+												</a>
+											@endif
 										@endif
 										
 									</div>

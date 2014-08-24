@@ -26,6 +26,9 @@ Route::get('profile/edit', function()
 
 Route::get('events', array('as' => 'events', function()
 {
+	if (!Auth::checK()) {
+		return Redirect::to('/login');
+	}
 	$events = Events::with('Tags')->orderBy('start_time', 'ASC')->whereBetween('start_time', array( date('Y-m-d', strtotime('now')), date('Y-m-d', strtotime('+30 days'))) )->get();
 	$tags = Tags::all();
 	return View::make('events/all', ['events' => $events, 'tags' => $tags]);
