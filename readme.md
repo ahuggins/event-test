@@ -31,16 +31,27 @@ Events is a web application built by the contributors listed on Github. Supposed
 
 ## Installing
 
-You will need to have Composer installed. https://getcomposer.org/
+### Composer
+You will need to have [Composer](https://getcomposer.org/) installed. 
 
 Anytime you do a pull, remember to run Composer Update.
 
 Familiarity with Laravel and running Migrations and Seeds is going to help.
 
-A Vagrant file is provided, so you should be able to pull master, command line into the folder and run Vagrant Up...assuming you have Vagrant and Virtual Box installed: http://www.vagrantup.com/  and https://www.virtualbox.org/
+### Vagrant
+A Vagrant file is provided, so you should be able to pull master, command line into the folder and run Vagrant Up...assuming you have Vagrant and Virtual Box installed: [Vagrant](http://www.vagrantup.com/)  and [Virtual Box](https://www.virtualbox.org/)
 
-I would also recommend using Homestead provided by Laravel. A great article on how to set that up is here: http://scotch.io/tutorials/php/getting-started-with-laravel-homestead    Recommended because you can run multiple sites on the one VM versus having a different VM for each site. Saves resources on your local computer.
+I would also recommend using Homestead provided by Laravel. A great article on how to set that up is [here](http://scotch.io/tutorials/php/getting-started-with-laravel-homestead)
 
+
+### Database
 Be aware, that when using Homestead, your Laravel application will be running in local mode on it. Therefore you should set up a DB according to the config in the app/config/local/database.php file. If you use the Vagrant file in the root of the project, you would probably need to setup a DB following the app/config/database.php file.
+
+### Environment Settings
+Configuration is set through dotfiles. This is currently only implemented for your database settings. After creating your database, create a file in the root directory named `.env.local.php` and set your `DB_HOST`, `DB_NAME`, `DB_USER`, and `DB_PASS` values in the `$_ENV` global variable. Laravel will automatically load these files for you. 
+
+### Seeds & Migrations
+After getting your DB set up, you will need to run seeds and migrations on the DB. You can do this with `php artisan migrate --seed`
+If you happen to be using homestead, make sure you aren't an idiot and running migrations on your local machine instead of on the VM (like @oflannabhra did)
 
 -- This section may not be complete. So if any other contributors would like to elaborate...feel free.
