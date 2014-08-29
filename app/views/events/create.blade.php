@@ -71,9 +71,9 @@
 					@endif
 				</div>
 				@if ($event)
-					{{ Form::model($event, ['method' => 'PATCH', 'route' => ['eventAdmin.update', $event->id], 'class' => 'form-signin', 'files' => true] ) }}
+					{{ Form::model($event, ['method' => 'PATCH', 'route' => ['event.update', $event->id], 'class' => 'form-signin', 'files' => true] ) }}
 				@else
-					{{ Form::model($event, ['route' => 'eventAdmin.store', 'class' => 'form-signin', 'files' => true] ) }}
+					{{ Form::model($event, ['route' => 'event.store', 'class' => 'form-signin', 'files' => true] ) }}
 				@endif
 				
 						<div class="col-md-9">

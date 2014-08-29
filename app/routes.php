@@ -19,10 +19,13 @@ Route::resource('session', 'SessionController', ['only' => ['create', 'store', '
 Route::resource('users','UsersController');
 Route::get('profile/edit', 'UsersController@edit')->before('auth');
 
-Route::get('events', array('as' => 'events', 'uses' => 'EventController@index'));
-Route::get('event/create', array('as' => 'event.create', 'uses' => 'EventAdminController@create') )->before('auth');
-Route::resource('eventAdmin', 'EventAdminController');
+// These are our filtered routes for login
+Route::group(array('before' => 'auth'), function()
+    {
+        Route::resource('event', 'EventController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+    }
+);
 Route::get('event/{id}', 'EventController@show');
-Route::get('event/{id}/edit', array('as' => 'event.edit', 'uses' => 'EventAdminController@edit') )->before('auth');
+Route::get('events/', 'EventController@index');
 
 Route::get('/', 'HomeController@showWelcome');
