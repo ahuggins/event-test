@@ -1,6 +1,6 @@
 <?php
 
-class EventController extends \BaseController {
+class SessionController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,12 +9,7 @@ class EventController extends \BaseController {
 	 */
 	public function index()
 	{
-		if (!Auth::checK()) {
-			return Redirect::to('/login');
-		}
-		$events = Events::thirtyDays();
-		$tags = Tags::all();
-		return View::make('events/all', ['events' => $events, 'tags' => $tags]);
+		
 	}
 
 
@@ -25,8 +20,8 @@ class EventController extends \BaseController {
 	 */
 	public function create()
 	{
-		// $user = Auth::users();
-		return View::make('events.create');
+		if ( Auth::check() ) return Redirect::to('/admin');
+		return View::make('session.create');
 	}
 
 
@@ -37,7 +32,12 @@ class EventController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		if ( Auth::attempt( Input::only( 'email', 'password' ) ) ) 
+		{
+			// return 'Welcome ' . Auth::user()->username . '!';
+			return Redirect::to('/')->withUser('user');
+		}
+		return Redirect::back()->withInput();
 	}
 
 
@@ -49,8 +49,7 @@ class EventController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$event = Events::find($id);
-		return View::make('events.event', ['event' => $event]);
+		//
 	}
 
 
@@ -81,12 +80,12 @@ class EventController extends \BaseController {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
-		//
+		Auth::logout();
+		return Redirect::route('session.create');
 	}
 
 

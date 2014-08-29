@@ -66,12 +66,12 @@ class UsersController extends \BaseController {
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit()
 	{
-		return 'test';
+		$user = User::find(Auth::user()->id);
+		return View::make('users.profile.edit')->with(compact('user'));
 	}
 
 

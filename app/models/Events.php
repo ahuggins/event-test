@@ -29,4 +29,9 @@ class Events extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->belongsToMany('Tags', 'events-tags-relation');
 	}
+	public static function thirtyDays()
+	{
+		$events = Events::with('Tags')->orderBy('start_time', 'ASC')->whereBetween('start_time', array( date('Y-m-d', strtotime('now')), date('Y-m-d', strtotime('+30 days'))) )->get();
+		return $events;
+	}
 }
