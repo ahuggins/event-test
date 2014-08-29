@@ -35,6 +35,11 @@
 					{{ $event->event_type }}<br />
 					Map:<br />
 					MAP GOES HERE<br />
+					@if ($event['created_by'] == Auth::user()->username)
+                    	<a href="{{ $event['id'] }}/edit">
+                    	<button class="btn btn-default btn-xs pull-left">Edit</button>
+                    	</a>
+                    @endif
 				</div>
 			</div>
 		</div>
