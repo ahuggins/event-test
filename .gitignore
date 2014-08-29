@@ -10,3 +10,4 @@ Thumbs.db
 vagrant
 Vagrant
 .vagrant
+/public/images
