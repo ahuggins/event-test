@@ -48,6 +48,10 @@ I would also recommend using Homestead provided by Laravel. A great article on h
 Be aware, that when using Homestead, your Laravel application will be running in local mode on it. Therefore you should set up a DB according to the config in the app/config/local/database.php file. If you use the Vagrant file in the root of the project, you would probably need to setup a DB following the app/config/database.php file.
 
 ### Environment Settings
-Configuration is set through dotfiles. This is currently only implemented for your database settings. After creating your database, create a file in the root directory named `.env.local.php` and set your `host`, `database`, `user`, and `password` values in the `$_ENV` global variable. Laravel will automatically load these files for you. 
+Configuration is set through dotfiles. This is currently only implemented for your database settings. After creating your database, create a file in the root directory named `.env.local.php` and set your `DB_HOST`, `DB_NAME`, `DB_USER`, and `DB_PASS` values in the `$_ENV` global variable. Laravel will automatically load these files for you. 
+
+### Seeds & Migrations
+After getting your DB set up, you will need to run seeds and migrations on the DB. You can do this with `php artisan migrate --seed`
+If you happen to be using homestead, make sure you aren't an idiot and running migrations on your local machine instead of on the VM (like @oflannabhra did)
 
 -- This section may not be complete. So if any other contributors would like to elaborate...feel free.
