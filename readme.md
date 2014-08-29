@@ -5,9 +5,23 @@ Events is a web application built by the contributors listed on Github. Supposed
 
 ## Short Term To Do's
 
-* Add Mapping to an event
-* When user logs in, should show them a "Dashboard" with the events they are "watching." Then they can view All Events to add more to their watchlist. Watchlist could be used to send email notifications.
+* User
+    * Profile
+        * integrate social networks
+    * "attend" an event
+    * Dashboard
+* Event
+    * Add Mapping to an event.
+* Emails
+    * Sign Up
+    * Password Reset
+    * Event Notices
+    * Weekly Notices
+* Tags
+    * Follow a tag to be notified of new events
+* When user logs in, should show them a "Dashboard" with the events they are "attending." Then they can view All Events to add more to their attendlist. Attendlist could be used to send email notifications.
 * Way to limit image upload size.
+
 * ~~Ability to add custom images to an event. Probably limit to a few. Sponsored events would be able to add more.~~
 * ~~Add Auto-complete for tags, add limitation of the tags in the DB Tags table~~
 * ~~Ability to add tags to an event when creating an event...using the events-tags-relation table~~
@@ -25,6 +39,7 @@ Events is a web application built by the contributors listed on Github. Supposed
 	* This could be handled as advertising (pay to have a special listed)
 * Along the same lines, perhaps a "Job Listing" area as well
 	* Pay to have job listed
+	* Or, cover charges for the events?
 * Notifications: Email and/or Text
 	* Thinking each week an email is sent reminding people of events they have said they are going to, or would just be interested in
 
