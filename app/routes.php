@@ -17,12 +17,13 @@ Route::get('logout', 'SessionController@destroy');
 Route::resource('session', 'SessionController', ['only' => ['create', 'store', 'destroy']]);
 
 Route::resource('users','UsersController');
-Route::get('profile/edit', 'UsersController@edit')->before('auth');
 
 // These are our filtered routes for login
 Route::group(array('before' => 'auth'), function()
     {
         Route::resource('event', 'EventController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+        Route::get('profile/edit', 'UsersController@edit');
+
     }
 );
 Route::get('event/{id}', 'EventController@show');
