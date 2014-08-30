@@ -9,7 +9,7 @@ class SessionController extends \BaseController {
 	 */
 	public function create()
 	{
-		if ( Auth::check() ) return Redirect::to('/admin');
+		if ( Auth::check() ) return Redirect::to('/');
 		return View::make('session.create');
 	}
 
