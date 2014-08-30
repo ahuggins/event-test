@@ -11,3 +11,4 @@ vagrant
 Vagrant
 .vagrant
 /public/images
+_ide_helper.php
