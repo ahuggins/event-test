@@ -43,5 +43,4 @@ class SessionController extends \BaseController {
 		return Redirect::route('session.create');
 	}
 
-
 }

@@ -25,7 +25,7 @@ $app = new Illuminate\Foundation\Application;
 */
 
 $env = $app->detectEnvironment(array(
-	'local' => array('homestead', '*.local'),
+	'local' => array('homestead', '*.local','test2'),
 	'production' => array('lex.events')
 ));
 
