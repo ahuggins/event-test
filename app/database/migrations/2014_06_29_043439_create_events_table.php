@@ -11,11 +11,7 @@ class CreateEventsTable extends Migration {
 	 */
 	public function up()
 	{
-<<<<<<< HEAD
 		Schema::create('events', function($table){
-=======
-		Schema::create('events',function($table){
->>>>>>> authentication-ah
 			$table->engine = 'InnoDB';
 			$table->increments('id')->unsigned();
 			$table->string('title');

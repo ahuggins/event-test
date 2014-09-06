@@ -12,11 +12,7 @@ class SetupUsersTable extends Migration {
 	 */
 	public function up()
 	{
-<<<<<<< HEAD
 		Schema::create('users', function($table){
-=======
-		Schema::create('users',function($table){
->>>>>>> authentication-ah
 			$table->engine = 'InnoDB';
 			$table->increments('id');
 			$table->string('username');

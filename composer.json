@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"barryvdh/laravel-debugbar": "1.*",
-		"ckeditor/ckeditor": "4.4.4"
+		"ckeditor/ckeditor": "4.4.4",
+        "sammyk/laravel-facebook-sdk": "~1.1"
 	},
 	"autoload": {
 		"classmap": [
