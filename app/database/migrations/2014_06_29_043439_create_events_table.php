@@ -4,7 +4,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateEventsTable extends Migration {
-
 	/**
 	 * Run the migrations.
 	 *
@@ -36,16 +35,17 @@ class CreateEventsTable extends Migration {
 			$table->engine = 'InnoDB';
 			$table->increments('id')->unsigned();
 			$table->string('tag_text');
+			$table->string('filter_text');
 			$table->softDeletes();
 			$table->timestamps();
 		});
 
 		Schema::create('events-tags-relation',function($table){
 			$table->engine = 'InnoDB';
-			$table->integer('event_id')->unsigned()->index();
-			$table->integer('tag_id')->unsigned()->index();
-			$table->foreign('event_id')->references('id')->on('users')->onDelete('cascade');
-			$table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
+			$table->integer('events_id')->unsigned()->index();
+			$table->foreign('events_id')->references('id')->on('events')->onDelete('cascade');
+			$table->integer('tags_id')->unsigned()->index();
+			$table->foreign('tags_id')->references('id')->on('tags')->onDelete('cascade');
 		});
 	}
 

@@ -4,18 +4,12 @@ Vagrant.configure("2") do |config|
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   config.vm.provision :shell, :path => "vagrant.sh"
 
-  #config.vm.network :forwarded_port, host: 80, guest: 80
+
   config.vm.network :forwarded_port, host: 8383, guest: 80
   config.vm.network :private_network, ip: "192.168.50.8"
 
   config.vm.synced_folder ".", "/vagrant", :mount_options => ['dmode=777','fmode=777']
-
-  # Set the ownership of the app/storage directory
-
   config.vm.hostname = "test2"
-
-  # If true, then any SSH connections made will enable agent forwarding.
-  # Default value: false
   config.ssh.forward_agent = true
 
   config.vm.provider :virtualbox do |vb|
