@@ -3,7 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
-	<title></title>
+	<title>Lex.events</title>
 	{{ HTML::script('js/jquery-1.11.1.min.js'); }}
 	{{ HTML::script('js/bootstrap.min.js'); }}
 	
