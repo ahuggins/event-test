@@ -14,12 +14,7 @@ class EventController extends \BaseController {
 		}
 		$events = Events::thirtyDays();
 		$tags = Tags::all();
-        $attending = EventsUsers::attending();
-        $attends = array();
-        foreach ($attending as $attend) {
-            $attends[] = $attend['events_id'];
-        }
-		return View::make('events/all', ['events' => $events, 'tags' => $tags, 'attending' => $attends]);
+		return View::make('events/all', ['events' => $events, 'tags' => $tags]);
 	}
 
 
@@ -170,21 +165,5 @@ class EventController extends \BaseController {
 		//
 	}
 
-    public function attend()
-    {
-        $attendee = new EventsUsers();
-
-        $attendee->events_id = Input::get('events_id');
-        $attendee->users_id = Auth::user()->id;
-        if (Input::get('attending') == 'true') {
-            $attendee->where('events_id', '=', $attendee->events_id)->where('users_id', '=', $attendee->users_id)->delete();
-        
-        } else {
-            $attendee->save();
-        }
-        
-        return Input::all();
-        return 'This shit is working';
-    }
 
 }

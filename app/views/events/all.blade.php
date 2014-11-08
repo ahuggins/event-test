@@ -3,7 +3,6 @@
 @section('scripts')
 {{ HTML::script('js/isotope.pkgd.min.js'); }}
 {{ HTML::script('js/imagesloaded.pkgd.min.js'); }}
-
 @stop
 
 @section('ready')
@@ -15,27 +14,7 @@
 		    layoutMode: 'masonry'
 		  });
 		});
-	  	
-	  	$('form[data-remote]').on('submit', function(e) {
-			var form = $(this);
-			var method = form.find('input[name="_method"]').val() || 'POST';
-			var url = form.prop('action');
-			var value = $(this).find('input[type="submit"]').val();
-			$.ajax({
-				type: method,
-				url: url,
-				data: form.serialize(),
-				success: function() {
-					if (value == 'Attend') {
-						form.find('input[type=submit]').val('Attending');	
-					} else {
-						form.find('input[type=submit]').val('Attend');
-					};
-					
-				}
-			});
-			e.preventDefault();
-		});
+	  
 	  // store filter for each group
 	  var filters = {};
 
@@ -124,11 +103,9 @@
 								}
 							 ?>
 							 <div class="event col-xs-12 col-sm-6 col-md-4 col-lg-3 clearfix @if( is_array($class) ) {{ implode(' ', $class) }} @endif @foreach($event['Tags'] as $tag) {{ $tag['filter_text'] }} @endforeach">
-							 	@if ($event->event_image)
-							 		<a href="event/{{ $event['id'] }}">
-										<img src="images/{{ $event->event_image }}" alt="" class="img-responsive">
-									</a>
-							 	@endif
+							 	<a href="event/{{ $event['id'] }}">
+									<img src="images/{{ $event->event_image }}" alt="" class="img-responsive">
+								</a>
 								<div class="details">
 									<a href="event/{{ $event['id'] }}">
 										<h3>{{ $event['title'] }}</h3>
@@ -141,23 +118,15 @@
 										{{ $event['description'] }}
 									</div>
 									<div class="controls">
-										{{ Form::open(['data-remote']) }}
-											{{ Form::hidden('events_id', $event['id']) }}
+										<span class="glyphicon glyphicon-plus"></span>
 										
-												@if (in_array($event['id'], $attending))
-													{{ Form::hidden('attending', 'true') }}
-													{{ Form::submit('Attending', ['class' => 'btn btn-default btn-xs pull-left']) }}
-												@else
-													{{ Form::submit('Attend', ['class' => 'btn btn-default btn-xs pull-left']) }}
-												@endif																				
-											
-										{{ Form::close() }}		
+											@if ($event['created_by'] == Auth::user()->username)
+												<a href="event/{{ $event['id'] }}/edit">
+													<button class="btn btn-default btn-xs pull-right">Edit</button>	
+												</a>
+											@endif
 										
-										@if ($event['created_by'] == Auth::user()->username)
-											<a href="event/{{ $event['id'] }}/edit">
-												<button class="btn btn-default btn-xs pull-right">Edit</button>	
-											</a>
-										@endif
+										
 									</div>
 								</div> 
 
