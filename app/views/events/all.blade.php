@@ -31,6 +31,7 @@
 					} else {
 						form.find('input[type=submit]').val('Attend');
 					};
+					
 				}
 			});
 			e.preventDefault();
