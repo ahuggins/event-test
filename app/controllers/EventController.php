@@ -2,25 +2,25 @@
 
 class EventController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		if (!Auth::check()) {
-			return Redirect::to('/login');
-		}
-		$events = Events::thirtyDays();
-		$tags = Tags::all();
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        if (!Auth::check()) {
+            return Redirect::to('/login');
+        }
+        $events = Events::thirtyDays();
+        $tags = Tags::all();
         $attending = EventsUsers::attending();
         $attends = array();
         foreach ($attending as $attend) {
             $attends[] = $attend['events_id'];
         }
-		return View::make('events/all', ['events' => $events, 'tags' => $tags, 'attending' => $attends]);
-	}
+        return View::make('events/all', ['events' => $events, 'tags' => $tags, 'attending' => $attends]);
+    }
 
 
     /**
@@ -84,25 +84,25 @@ class EventController extends \BaseController {
     }
 
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		$event = Events::find($id);
-		return View::make('events.event', ['event' => $event]);
-	}
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $event = Events::find($id);
+        return View::make('events.event', ['event' => $event]);
+    }
 
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
     public function edit($id)
     {
         $user = Auth::user()->username;
@@ -159,16 +159,16 @@ class EventController extends \BaseController {
     }
 
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 
     public function attend()
     {
