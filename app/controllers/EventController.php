@@ -12,8 +12,8 @@ class EventController extends \BaseController {
         if (!Auth::check()) {
             return Redirect::to('/login');
         }
-        // return View::make('events/all');
         $tags = Tags::all();
+        return View::make('events/all', ['tags' => $tags]);
         $events = Events::thirtyDays();
         
         return View::make('events/all', ['events' => $events, 'tags' => $tags);
