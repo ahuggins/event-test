@@ -75,9 +75,12 @@
 					<h3>Event Type</h3>
 					<div class="btn-group js-radio-button-group" data-filter-group="color">
 						<button class="btn btn-default is-checked" data-filter="">any</button>
-						@foreach($tags as $tag)
-							<button class="btn btn-default" data-filter=".{{ $tag['filter_text'] }}">{{ $tag['tag_text'] }}</button>
-						@endforeach
+						@if (isset($tags))
+							@foreach($tags as $tag)
+								<button class="btn btn-default" data-filter=".{{ $tag['filter_text'] }}">{{ $tag['tag_text'] }}</button>
+							@endforeach
+						@endif
+						
 					</div>
 				</div>
 				<div class="ui-group col-md-12">
@@ -98,7 +101,8 @@
 		<div class="container">
 			<div class="row">
 				<div id="events">
-					@foreach($events as $event)
+					@if (isset($events))
+						@foreach($events as $event)
 						
 							<?php 
 								$class = '';
@@ -163,6 +167,7 @@
 
 							</div>
 					@endforeach
+					@endif
 				</div>
 			</div>
 		</div>
