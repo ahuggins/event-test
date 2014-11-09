@@ -147,7 +147,9 @@
 									<div class="controls">
 										{{ Form::open(['data-remote']) }}
 											{{ Form::hidden('events_id', $event['id']) }}
-												{{ Form::submit('Attend', ['class' => 'btn btn-default btn-xs pull-left']) }}
+												
+												
+											
 										{{ Form::close() }}		
 										
 										@if ($event['created_by'] == Auth::user()->username)
