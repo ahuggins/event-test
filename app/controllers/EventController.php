@@ -190,7 +190,7 @@ class EventController extends \BaseController {
         }
         
         return Input::all();
-        return 'This shit is working';
+        // return 'This shit is working';
     }
 
 }
