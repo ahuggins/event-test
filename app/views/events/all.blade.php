@@ -101,7 +101,7 @@
 		<div class="container">
 			<div class="row">
 				<div id="events">
-					@if (isset($events))
+					@if (isset($events) && count($events) > 0)
 						@foreach($events as $event)
 						
 							<?php 
