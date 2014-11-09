@@ -16,14 +16,14 @@ class EventController extends \BaseController {
         $events = Events::thirtyDays();
         
         return View::make('events/all', ['events' => $events, 'tags' => $tags);
-        $attending = EventsUsers::attending();
-        $attends = array();
-        if ($attending) {
-            foreach ($attending as $attend) {
-                $attends[] = $attend['events_id'];
-            }
-        }
-        return View::make('events/all', ['events' => $events, 'tags' => $tags, 'attending' => $attends]);
+        // $attending = EventsUsers::attending();
+        // $attends = array();
+        // if ($attending) {
+        //     foreach ($attending as $attend) {
+        //         $attends[] = $attend['events_id'];
+        //     }
+        // }
+        // return View::make('events/all', ['events' => $events, 'tags' => $tags, 'attending' => $attends]);
     }
 
 
