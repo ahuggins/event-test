@@ -101,8 +101,7 @@
 		<div class="container">
 			<div class="row">
 				<div id="events">
-					<pre>{{ print_r($events) }}</pre>
-					@if (isset($events) && count($events) > 0)
+					@if (isset($events))
 						@foreach($events as $event)
 						
 							<?php 
@@ -148,14 +147,14 @@
 									<div class="controls">
 										{{ Form::open(['data-remote']) }}
 											{{ Form::hidden('events_id', $event['id']) }}
-										
-												@if (in_array($event['id'], $attending))
-													{{ Form::hidden('attending', 'true') }}
-													{{ Form::submit('Attending', ['class' => 'btn btn-default btn-xs pull-left']) }}
-												@else
-													{{ Form::submit('Attend', ['class' => 'btn btn-default btn-xs pull-left']) }}
-												@endif																				
-											
+												@if (isset($attending))
+													@if (in_array($event['id'], $attending))
+														{{ Form::hidden('attending', 'true') }}
+														{{ Form::submit('Attending', ['class' => 'btn btn-default btn-xs pull-left']) }}
+													@else
+														{{ Form::submit('Attend', ['class' => 'btn btn-default btn-xs pull-left']) }}
+													@endif																				
+												@endif
 										{{ Form::close() }}		
 										
 										@if ($event['created_by'] == Auth::user()->username)
