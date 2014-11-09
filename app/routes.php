@@ -15,8 +15,8 @@
 Route::get('login', 'SessionController@create');
 Route::get('logout', 'SessionController@destroy');
 Route::resource('session', 'SessionController', ['only' => ['create', 'store', 'destroy']]);
-Route::get('events', 'EventController@index');
 Route::post('events', 'EventController@attend');
+Route::get('events', 'EventController@index');
 Route::resource('users','UsersController');
 
 // These are our filtered routes for login
