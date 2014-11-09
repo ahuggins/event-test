@@ -101,6 +101,7 @@
 		<div class="container">
 			<div class="row">
 				<div id="events">
+					<pre>{{ print_r($events) }}</pre>
 					@if (isset($events) && count($events) > 0)
 						@foreach($events as $event)
 						
