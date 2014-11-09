@@ -21,6 +21,7 @@ class EventController extends \BaseController {
                 $attends[] = $attend['events_id'];
             }
         }
+        return View::make('events/all', ['events' => $events, 'tags' => $tags);
         return View::make('events/all', ['events' => $events, 'tags' => $tags, 'attending' => $attends]);
     }
 
