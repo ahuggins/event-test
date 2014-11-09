@@ -152,10 +152,10 @@
 														{{ Form::hidden('attending', 'true') }}
 														{{ Form::submit('Attending', ['class' => 'btn btn-default btn-xs pull-left']) }}
 													@else
-														{{ Form::submit('Attend', ['class' => 'btn btn-default btn-xs pull-left']) }}
+														
 													@endif																				
 												@endif
-												
+												{{ Form::submit('Attend', ['class' => 'btn btn-default btn-xs pull-left']) }}
 											
 										{{ Form::close() }}		
 										
@@ -168,7 +168,7 @@
 								</div> 
 
 							</div>
-					@endforeach
+						@endforeach
 					@endif
 				</div>
 			</div>
