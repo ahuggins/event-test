@@ -147,13 +147,11 @@
 									<div class="controls">
 										{{ Form::open(['data-remote']) }}
 											{{ Form::hidden('events_id', $event['id']) }}
-												@if (isset($attending))
-													@if (in_array($event['id'], $attending))
-														{{ Form::hidden('attending', 'true') }}
-														{{ Form::submit('Attending', ['class' => 'btn btn-default btn-xs pull-left']) }}
-													@else
-														{{ Form::submit('Attend', ['class' => 'btn btn-default btn-xs pull-left']) }}
-													@endif																				
+												@if (isset($attending) && in_array($event['id'], $attending))
+													{{ Form::hidden('attending', 'true') }}
+													{{ Form::submit('Attending', ['class' => 'btn btn-default btn-xs pull-left']) }}
+												@else
+													{{ Form::submit('Attend', ['class' => 'btn btn-default btn-xs pull-left']) }}
 												@endif
 										{{ Form::close() }}		
 										
