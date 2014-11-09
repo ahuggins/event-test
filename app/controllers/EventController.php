@@ -13,10 +13,10 @@ class EventController extends \BaseController {
             return Redirect::to('/login');
         }
         return View::make('events/all');
-        $tags = Tags::all();
-        $events = Events::thirtyDays();
+        // $tags = Tags::all();
+        // $events = Events::thirtyDays();
         
-        return View::make('events/all', ['events' => $events, 'tags' => $tags);
+        // return View::make('events/all', ['events' => $events, 'tags' => $tags);
         // $attending = EventsUsers::attending();
         // $attends = array();
         // if ($attending) {
