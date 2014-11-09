@@ -11,7 +11,6 @@ class EventsUsers extends Eloquent {
 
 	public static function attending()
 	{
-
 		$attending = EventsUsers::where('users_id', '=', Auth::user()->id)->get();
 		return $attending;
 	}
