@@ -36,6 +36,7 @@ class EventController extends \BaseController {
      */
     public function create()
     {
+        
         $user = Auth::user()->username;
         $tags = Tags::all();
         $event = array();
@@ -53,7 +54,11 @@ class EventController extends \BaseController {
      */
     public function store()
     {
+        $validation = Validator::make(Input::all(), ['title' => 'required', 'start_time' => 'required', 'end_time' => 'required', 'event_type' => 'required']);
 
+        if ($validation->fails()){
+            return Redirect::back()->withInput()->withErrors($validation->messages());
+        }
         // return 'Store the event';
         $event = new Events();
         $event->title = Input::get('title');
