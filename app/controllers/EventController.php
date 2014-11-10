@@ -184,9 +184,9 @@ class EventController extends \BaseController {
         $attendee->events_id = Input::get('events_id');
         $attendee->users_id = Auth::user()->id;
         
-        $attendee->timestamps();
+        // $attendee->timestamps();
         echo "<pre>";print_r($attendee);echo "</pre>";
-        $attendee->save();
+        $attendee->create();
 
         return Input::all();
         if (Input::get('attending') == 'true') {
