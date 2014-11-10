@@ -32,7 +32,7 @@
             </div>
             @if ($user->id === Auth::user()->id)
                 <div class="col-md-6">
-                    <a href="{{ URL::action('UsersController@edit') }}">
+                    <a href="{{ URL::to('profile/edit') }}">
                         <button class="btn btn-default btn-xs pull-left">Edit Your Profile</button>
                     </a>
                 </div>
