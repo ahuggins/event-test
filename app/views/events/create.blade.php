@@ -79,8 +79,11 @@
 						<div class="col-md-9">
 						
 							{{ Form::text('title', null, array('placeholder' => 'Title', 'class' => 'form-control', 'autofocus')) }}
+							{{ $errors->first('title', '<span class=bg-danger>:message</span>') }}
 							{{ Form::text('start_time', null, array('placeholder' => 'Start Time', 'class' => 'form-control datepicker', 'data-datepicker' => 'datepicker')) }}
+							{{ $errors->first('start_time', '<span class=bg-danger>:message</span>') }}
 							{{ Form::text('end_time', null, array('placeholder' => 'End Time', 'class' => 'form-control datepicker', 'data-datepicker' => 'datepicker')) }}
+							{{ $errors->first('end_time', '<span class=bg-danger>:message</span>') }}
 							{{ Form::text('location', null, array('placeholder' => 'Address', 'class' => 'form-control')) }}
 							{{ Form::text('hosted_by', null, array('placeholder' => 'What/who is hosting? Business, Group, or Person?', 'class' => 'form-control')) }}
 							{{ Form::text('description', null, array('placeholder' => 'Description (Maximum 140 characters)', 'class' => 'form-control', 'id' => 'description')) }}
@@ -102,6 +105,7 @@
 							    </label>
 							</div>
 							{{ Form::select('event_type[]', $tags, null, ['multiple' => 'true', 'class' => 'event-type form-control', 'data-placeholder' => 'Select Event Tags']) }}
+							{{ $errors->first('event_type', '<span class=bg-danger>:message</span>') }}
 							{{ Form::submit((!empty($event)?'Update Event' : 'Create Event'), array('class' => 'btn btn-lg btn-primary btn-block')) }}
 						</div>	
 				{{ Form::close() }}
