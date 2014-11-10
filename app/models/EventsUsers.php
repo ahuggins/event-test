@@ -15,5 +15,9 @@ class EventsUsers extends Eloquent {
 		$attending = EventsUsers::where('users_id', '=', Auth::user()->id)->get();
 		return $attending;
 	}
+	public function save()
+	{
+		parent::save();
+	}
 	
 }
