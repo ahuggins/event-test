@@ -15,7 +15,7 @@
 Route::get('login', 'SessionController@create');
 Route::get('logout', 'SessionController@destroy');
 Route::resource('session', 'SessionController', ['only' => ['create', 'store', 'destroy']]);
-Route::post('events', 'EventController@attend');
+Route::post('/events', 'EventController@attend');
 Route::get('events', 'EventController@index');
 Route::resource('users','UsersController');
 
