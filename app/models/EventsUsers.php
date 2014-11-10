@@ -1,6 +1,11 @@
 <?php
 
-class EventsUsers extends Eloquent {
+use Illuminate\Auth\UserTrait;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
+use Illuminate\Auth\Reminders\RemindableInterface;
+
+class EventsUsers extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
 	 * The database table used by the model.
@@ -15,9 +20,5 @@ class EventsUsers extends Eloquent {
 		$attending = EventsUsers::where('users_id', '=', Auth::user()->id)->get();
 		return $attending;
 	}
-	public function save()
-	{
-		parent::save();
-	}
-	
+
 }
