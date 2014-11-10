@@ -145,7 +145,7 @@
 										{{ $event['description'] }}
 									</div>
 									<div class="controls">
-										{{ Form::open(['data-remote']) }}
+										{{ Form::open( ['route' => 'event.attend','data-remote'] ) }}
 											{{ Form::hidden('events_id', $event['id']) }}
 												@if (isset($attending))
 													@if (in_array($event['id'], $attending))
