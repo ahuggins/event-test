@@ -14,18 +14,18 @@ class EventController extends \BaseController {
         }
         $tags = Tags::all();
         $events = Events::thirtyDays();
-        return View::make('events/all', ['tags' => $tags, 'events' => $events]);
+        // return View::make('events/all', ['tags' => $tags, 'events' => $events]);
         
         
         // return View::make('events/all', ['events' => $events, 'tags' => $tags);
-        // $attending = EventsUsers::attending();
-        // $attends = array();
-        // if ($attending) {
-        //     foreach ($attending as $attend) {
-        //         $attends[] = $attend['events_id'];
-        //     }
-        // }
-        // return View::make('events/all', ['events' => $events, 'tags' => $tags, 'attending' => $attends]);
+        $attending = EventsUsers::attending();
+        $attends = array();
+        if ($attending) {
+            foreach ($attending as $attend) {
+                $attends[] = $attend['events_id'];
+            }
+        }
+        return View::make('events/all', ['events' => $events, 'tags' => $tags, 'attending' => $attends]);
     }
 
 
@@ -179,22 +179,14 @@ class EventController extends \BaseController {
     public function attend()
     {
 
-        $attendee = new EventsUsers();
-
-        $attendee->events_id = Input::get('events_id');
-        $attendee->users_id = Auth::user()->id;
         
-        // $attendee->timestamps();
-        echo "<pre>";print_r($attendee);echo "</pre>";
-        $attendee->save();
 
         // return Input::all();
-        // if (Input::get('attending') == 'true') {
-        //     $attendee->where('events_id', '=', $attendee->events_id)->where('users_id', '=', $attendee->users_id)->delete();
-        
-        // } else {
-        //     $attendee->save();
-        // }
+        if (Input::get('attending') == 'true') {
+            EventsUsers::drop(Input::get('events_id'));        
+        } else {
+            EventsUsers::store(Input::get('events_id'));
+        }
         
         
         // return 'This shit is working';

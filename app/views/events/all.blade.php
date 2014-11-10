@@ -28,8 +28,10 @@
 				data: form.serialize(),
 				success: function() {
 					if (value == 'Attend') {
+						form.find('input[name=attending]').val('true');
 						form.find('input[type=submit]').val('Attending');	
 					} else {
+						form.find('input[name=attending]').val('false');
 						form.find('input[type=submit]').val('Attend');
 					};
 					
@@ -152,10 +154,11 @@
 														{{ Form::hidden('attending', 'true') }}
 														{{ Form::submit('Attending', ['class' => 'btn btn-default btn-xs pull-left']) }}
 													@else
-														
+														{{ Form::hidden('attending', 'false') }}
+														{{ Form::submit('Attend', ['class' => 'btn btn-default btn-xs pull-left']) }}		
 													@endif																				
 												@endif
-												{{ Form::submit('Attend', ['class' => 'btn btn-default btn-xs pull-left']) }}
+												
 											
 										{{ Form::close() }}		
 										
