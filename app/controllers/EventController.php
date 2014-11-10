@@ -186,15 +186,15 @@ class EventController extends \BaseController {
         
         // $attendee->timestamps();
         echo "<pre>";print_r($attendee);echo "</pre>";
-        $attendee->create();
+        return $attendee->save();
 
-        return Input::all();
-        if (Input::get('attending') == 'true') {
-            $attendee->where('events_id', '=', $attendee->events_id)->where('users_id', '=', $attendee->users_id)->delete();
+        // return Input::all();
+        // if (Input::get('attending') == 'true') {
+        //     $attendee->where('events_id', '=', $attendee->events_id)->where('users_id', '=', $attendee->users_id)->delete();
         
-        } else {
-            $attendee->save();
-        }
+        // } else {
+        //     $attendee->save();
+        // }
         
         
         // return 'This shit is working';
