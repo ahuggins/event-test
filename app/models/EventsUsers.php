@@ -11,6 +11,8 @@ class EventsUsers extends Eloquent {
 
 	protected $fillable = ['users_id', 'events_id'];
 
+	protected $incrementing = false;
+
 	public static function attending()
 	{
 		$attending = EventsUsers::where('users_id', '=', Auth::user()->id)->get();
