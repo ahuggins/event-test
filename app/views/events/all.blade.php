@@ -16,26 +16,26 @@
 		  });
 		});
 	  	
-	  	$('form[data-remote]').on('submit', function(e) {
-			var form = $(this);
-			var method = form.find('input[name="_method"]').val() || 'POST';
-			var url = form.prop('action');
-			var value = $(this).find('input[type="submit"]').val();
-			$.ajax({
-				type: method,
-				url: url,
-				data: form.serialize(),
-				success: function() {
-					if (value == 'Attend') {
-						form.find('input[type=submit]').val('Attending');	
-					} else {
-						form.find('input[type=submit]').val('Attend');
-					};
+	 //  	$('form[data-remote]').on('submit', function(e) {
+		// 	var form = $(this);
+		// 	var method = form.find('input[name="_method"]').val() || 'POST';
+		// 	var url = form.prop('action');
+		// 	var value = $(this).find('input[type="submit"]').val();
+		// 	$.ajax({
+		// 		type: method,
+		// 		url: url,
+		// 		data: form.serialize(),
+		// 		success: function() {
+		// 			if (value == 'Attend') {
+		// 				form.find('input[type=submit]').val('Attending');	
+		// 			} else {
+		// 				form.find('input[type=submit]').val('Attend');
+		// 			};
 					
-				}
-			});
-			e.preventDefault();
-		});
+		// 		}
+		// 	});
+		// 	e.preventDefault();
+		// });
 	  // store filter for each group
 	  var filters = {};
 
