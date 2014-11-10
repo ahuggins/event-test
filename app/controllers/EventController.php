@@ -178,6 +178,7 @@ class EventController extends \BaseController {
 
     public function attend()
     {
+        return Input::all();
         $attendee = new EventsUsers();
 
         $attendee->events_id = Input::get('events_id');
@@ -189,7 +190,7 @@ class EventController extends \BaseController {
             $attendee->save();
         }
         
-        return Input::all();
+        
         // return 'This shit is working';
     }
 
