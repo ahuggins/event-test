@@ -7,14 +7,11 @@ class EventsUsers extends Eloquent {
 	 *
 	 * @var string
 	 */
-	public $table = 'events-users';
+	protected $table = 'events-users';
 
-	protected $fillable = ['users_id', 'events_id'];
-
-	protected $incrementing = false;
-
-	public function attending()
+	public static function attending()
 	{
+
 		$attending = EventsUsers::where('users_id', '=', Auth::user()->id)->get();
 		return $attending;
 	}

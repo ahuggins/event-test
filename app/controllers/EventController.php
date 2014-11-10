@@ -186,7 +186,7 @@ class EventController extends \BaseController {
         
         // $attendee->timestamps();
         echo "<pre>";print_r($attendee);echo "</pre>";
-        return $attendee->save();
+        $attendee->save();
 
         // return Input::all();
         // if (Input::get('attending') == 'true') {
