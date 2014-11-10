@@ -178,11 +178,13 @@ class EventController extends \BaseController {
 
     public function attend()
     {
-        return Input::all();
+
         $attendee = new EventsUsers();
 
         $attendee->events_id = Input::get('events_id');
         $attendee->users_id = Auth::user()->id;
+        echo "<pre>";print_r($attendee);echo "</pre>";
+        return Input::all();
         if (Input::get('attending') == 'true') {
             $attendee->where('events_id', '=', $attendee->events_id)->where('users_id', '=', $attendee->users_id)->delete();
         
