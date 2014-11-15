@@ -34,7 +34,7 @@ class EventsUsers extends Eloquent {
 	{
 		$attending = EventsUsers::attending();
 		$attends = array();
-		if (!empty($attending)) {
+		if (empty($attending)) {
 			return $attends;
         }
         foreach ($attending as $attend) {
