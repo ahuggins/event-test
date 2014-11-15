@@ -12,3 +12,5 @@ Vagrant
 .vagrant
 /public/images
 _ide_helper.php
+events.sublime-project
+events.sublime-workspace
