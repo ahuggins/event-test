@@ -1,5 +1,7 @@
 <?php
 
+use EmailController as Email;
+
 class UsersController extends \BaseController {
 
 	/**
@@ -45,6 +47,12 @@ class UsersController extends \BaseController {
 		$user->username = Input::get('username');
 		$user->password = Hash::make(Input::get('password'));
 		$user->save();
+
+
+		Mail::send('emails/app/welcome', [], function($message)
+		{
+			$message->to(Input::get('email'))->subject('Welcome to Lex Events!');
+		});
 
 		return Redirect::route('users.index');
 	}
