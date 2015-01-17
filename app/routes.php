@@ -15,9 +15,12 @@
 Route::get('login', 'SessionController@create');
 Route::get('logout', 'SessionController@destroy');
 Route::resource('session', 'SessionController', ['only' => ['create', 'store', 'destroy']]);
-Route::post('/events', 'EventController@attend');
+Route::post('events', 'EventController@attend');
 Route::post('event/attend', array('as' => 'event.attend', 'uses' => 'EventController@attend'));
-Route::get('events', 'EventController@index');
+Route::get('events', [
+	'as' => 'events',
+	'uses' => 'EventController@index'
+]);
 Route::resource('users','UsersController');
 
 // These are our filtered routes for login
@@ -29,6 +32,6 @@ Route::group(array('before' => 'auth'), function()
     }
 );
 Route::get('event/{id}', 'EventController@show');
-Route::get('events/', 'EventController@index');
+Route::get('events', 'EventController@index');
 
 Route::get('/', 'HomeController@showWelcome');
