@@ -14,6 +14,7 @@ class EventsUsersMigration extends Migration {
 	{
 		Schema::create('events-users',function($table){
 			$table->engine = 'InnoDB';
+			$table->increments('id');
 			$table->integer('events_id')->unsigned()->index();
 			$table->integer('users_id')->unsigned()->index();
 			$table->timestamps();
