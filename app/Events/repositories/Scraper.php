@@ -30,8 +30,7 @@ class Scraper
 					
 		}
 		$start_time = date('Y-m-d H:i:s', strtotime($start_time));
-			echo "<pre>";print_r($start_time);echo "</pre>";
-
+			
 		if (isset($temp[1])) {
 			$end_time = $start[0] . ' ' . $temp[1] . ' ' . $year;
 			$end_time = date('Y-m-d H:i:s', strtotime($end_time));
