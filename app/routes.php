@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -34,4 +33,4 @@ Route::group(array('before' => 'auth'), function()
 Route::get('event/{id}', 'EventController@show');
 Route::get('events', 'EventController@index');
 
-Route::get('/', 'HomeController@showWelcome');
+Route::get('/', 'EventController@index');

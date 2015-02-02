@@ -11,4 +11,6 @@ class EventsTagsRelation extends Eloquent {
 
 	public $timestamps = false;
 
+	public $fillable = ['events_id', 'tags_id'];
+
 }

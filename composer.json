@@ -7,7 +7,8 @@
 		"laravel/framework": "4.2.*",
 		"barryvdh/laravel-debugbar": "1.*",
 		"ckeditor/ckeditor": "4.4.4",
-		"guzzlehttp/guzzle": "~4.0"
+		"guzzlehttp/guzzle": "~4.0",
+		"monashee/php-simple-html-dom-parser": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
@@ -17,7 +18,10 @@
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
-		]
+		],
+		"psr-0": {
+			"Events": "app/"
+		}
 	},
 	"scripts": {
 		"post-install-cmd": [
