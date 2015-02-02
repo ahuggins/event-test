@@ -6,7 +6,8 @@
 |--------------------------------------------------------------------------
 |
 */
-App::bind('Events\repositories\ScraperInterface', 'Events\repositories\scrapers\BlueStallion');
+// App::bind('Events\repositories\ScraperInterface', 'Events\repositories\scrapers\BlueStallion');
+App::bind('Events\repositories\ScraperInterface', 'Events\repositories\scrapers\BeerTrappe');
 
 /*
 |--------------------------------------------------------------------------
