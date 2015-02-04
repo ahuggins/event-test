@@ -34,3 +34,4 @@ Route::get('event/{id}', 'EventController@show');
 Route::get('events', 'EventController@index');
 
 Route::get('/', 'EventController@index');
+Route::get('/myevents', 'EventController@viewMyEvents');

@@ -173,18 +173,25 @@ class EventController extends \BaseController {
 
     public function attend()
     {
-
-        
-
-        // return Input::all();
         if (Input::get('attending') == 'true') {
             EventsUsers::drop(Input::get('events_id'));        
         } else {
             EventsUsers::store(Input::get('events_id'));
+        }        
+    }
+
+    public function viewMyEvents()
+    {
+        if (!Auth::check()) {
+            return Redirect::to('/login');
         }
-        
-        
-        // return 'This shit is working';
+        $tags = Tags::all();
+        $attends = EventsUsers::getIds();
+        $events = [];
+        if (!empty($attends)) {
+            $events = Events::whereIn('id', $attends)->get();
+        }
+        return View::make('events/all', ['events' => $events, 'tags' => $tags, 'attending' => $attends]);
     }
 
 }

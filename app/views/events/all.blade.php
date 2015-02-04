@@ -104,7 +104,7 @@
 			<div class="row">
 				<div id="events">
 					@if (isset($events))
-						@foreach($events as $event)
+						@forelse($events as $event)
 						
 							<?php 
 								$class = '';
@@ -171,7 +171,9 @@
 								</div> 
 
 							</div>
-						@endforeach
+						@empty
+							<div class="event col-md-4">There are no events to display.</div>
+						@endforelse
 					@endif
 				</div>
 			</div>
