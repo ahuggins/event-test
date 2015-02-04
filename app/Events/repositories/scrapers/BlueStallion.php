@@ -22,10 +22,6 @@ class BlueStallion extends Scraper implements ScraperInterface
 	function __construct(PhpSimpleHtmlDomParser $parser)
 	{
 		$this->parser = $parser;
-		$this->html = $this->parser->file_get_html($this->firstUrl);
-		$this->setLocationData();
-		$this->setTagsAvailable();
-		$this->scrape();
 	}
 
 	/**
@@ -94,9 +90,13 @@ class BlueStallion extends Scraper implements ScraperInterface
 	 */
 	public function setTagsAvailable()
 	{
-		$tags = Tags::all(['id', 'tag_text', 'filter_text']);
-		foreach ($tags as $tag) {
-			$this->tagsAvailable[] = $tag->toArray();
+		if( $tags = Tags::all(['id', 'tag_text', 'filter_text']) ) {
+			foreach ($tags as $tag) {
+				$this->tagsAvailable[] = $tag->toArray();
+			}
+		} else {
+			print "There are no tags in the db" . PHP_EOL;
+			exit;
 		}
 	}
 
@@ -108,7 +108,10 @@ class BlueStallion extends Scraper implements ScraperInterface
 		
 		// Check the vendor ID to see if the event already exists.
 		
-		
+		$this->html = $this->parser->file_get_html($this->firstUrl);
+		$this->setLocationData();
+		$this->setTagsAvailable();
+		$this->scrape();
 
 		// Save to DB
 		foreach($this->events as $eventNew)
@@ -139,7 +142,11 @@ class BlueStallion extends Scraper implements ScraperInterface
 	 */
 	public function setLocationData()
 	{
-		$location = Locations::where('id', '=', $this->location_id)->first();
-		$this->location = $location;
+		if( $location = Locations::where('id', '=', $this->location_id)->first() ) {
+			$this->location = $location;	
+		} else {
+			print "Location: " . $this->location_id . " does not exist in Database." . PHP_EOL;
+			exit;
+		}
 	}
 }

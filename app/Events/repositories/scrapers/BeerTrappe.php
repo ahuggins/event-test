@@ -22,10 +22,6 @@ class BeerTrappe extends Scraper implements ScraperInterface
 	function __construct(PhpSimpleHtmlDomParser $parser)
 	{
 		$this->parser = $parser;
-		$this->html = $this->parser->file_get_html($this->firstUrl);
-		$this->setLocationData();
-		$this->setTagsAvailable();
-		$this->scrape();
 	}
 
 	/**
@@ -107,7 +103,10 @@ class BeerTrappe extends Scraper implements ScraperInterface
 	{
 		
 		// Check the vendor ID to see if the event already exists.
-		
+		$this->html = $this->parser->file_get_html($this->firstUrl);
+		$this->setLocationData();
+		$this->setTagsAvailable();
+		$this->scrape();
 		
 
 		// Save to DB
