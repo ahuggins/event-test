@@ -1,3 +1,3 @@
 <?php
 
-Artisan::resolve('Scrape');
+Artisan::resolve('ScrapeCommand');
