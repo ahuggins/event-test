@@ -3,7 +3,7 @@
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use Events\repositories\ScraperInterface;
+use Events\repositories\Scraper;
 
 
 class ScrapeCommand extends Command {
@@ -29,8 +29,9 @@ class ScrapeCommand extends Command {
 	 *
 	 * @return void
 	 */
-	public function __construct(ScraperInterface $scraper)
+	public function __construct(Scraper $scraper)
 	{
+		
 		parent::__construct();
 		$this->scraper = $scraper;
 	}
@@ -42,7 +43,8 @@ class ScrapeCommand extends Command {
 	 */
 	public function fire()
 	{
-		$message = $this->scraper->scrape();
+		$class = $this->argument('class');
+		$message = $this->scraper->scrape($class);
 		$this->info($message);
 	}
 
@@ -51,12 +53,12 @@ class ScrapeCommand extends Command {
 	 *
 	 * @return array
 	 */
-	// protected function getArguments()
-	// {
-		// return array(
-		// 	array('class', InputArgument::REQUIRED, 'The name of the class you want to have scraped.'),
-		// );
-	// }
+	protected function getArguments()
+	{
+		return array(
+			array('class', InputArgument::REQUIRED, 'The name of the class you want to have scraped.'),
+		);
+	}
 
 	/**
 	 * Get the console command options.

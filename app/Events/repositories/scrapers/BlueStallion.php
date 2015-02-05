@@ -27,7 +27,7 @@ class BlueStallion extends Scraper implements ScraperInterface
 	/**
 	 * The steps involved in order to scrape the data...sets next month URL and scrapes both pages with scraping() method
 	 */
-	public function scrape()
+	public function fire()
 	{
 		$this->html = $this->parser->file_get_html($this->firstUrl);
 		$this->setLocationData();

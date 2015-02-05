@@ -2,13 +2,12 @@
 
 use Events\repositories\Scraper;
 use Monashee\PhpSimpleHtmlDomParser\PhpSimpleHtmlDomParser;
-use Events\repositories\ScraperInterface;
 use \Events;
 use \Locations;
 use \Tags;
 use \EventsTagsRelation;
 
-class BeerTrappe extends Scraper implements ScraperInterface
+class BeerTrappe extends Scraper
 {
 	public $html;
 	public $location_id = 2;
@@ -27,7 +26,7 @@ class BeerTrappe extends Scraper implements ScraperInterface
 	/**
 	 * The steps involved in order to scrape the data...sets next month URL and scrapes both pages with scraping() method
 	 */
-	public function scrape()
+	public function fire()
 	{
 		$this->html = $this->parser->file_get_html($this->firstUrl);
 		$this->setLocationData();
@@ -70,6 +69,7 @@ class BeerTrappe extends Scraper implements ScraperInterface
 				// $item['event_type'] = $this->eventTags($item['vendor_event_code']);
 				$item['event_type'] = 1;
 				$this->events[] = $item;
+				print 'Event Added: ' . $item['title'] . PHP_EOL;
 			}
 		}
 	}
@@ -102,40 +102,7 @@ class BeerTrappe extends Scraper implements ScraperInterface
 		}
 	}
 
-	/**
-	 * Stick the events we scraped into the DB.
-	 */
-	public function addToDB()
-	{
-		
-		// Check the vendor ID to see if the event already exists.
-		
-		
-
-		// Save to DB
-		foreach($this->events as $eventNew)
-		{
-			if (!empty($eventNew['title'])) {
-				$entered = Events::create([
-					'title' => $eventNew['title'],
-					'description' => $eventNew['description'],
-					'vendor_event_id' => $eventNew['vendor_event_id'],
-					'hosted_by' => $eventNew['hosted_by'],
-					'event_type' => $eventNew['event_type'],
-					'location' => $eventNew['location'],
-					'created_by' => $eventNew['created_by'],
-					'start_time' => $eventNew['date']['start_time'],
-					'end_time' => $eventNew['date']['end_time']
-				]);
-
-				EventsTagsRelation::create([
-					'events_id' => $entered->id,
-					'tags_id' => $entered->event_type
-				]);
-			}
-		}
-		
-	}
+	
 
 	/**
 	 * Pulls the location data from the DB and sets it to a property on the class.

@@ -1,11 +1,58 @@
 <?php namespace Events\repositories;
 
+use Monashee\PhpSimpleHtmlDomParser\PhpSimpleHtmlDomParser;
+use \Events;
+use \Locations;
+use \Tags;
+use \EventsTagsRelation;
 /**
 * Base Scraper Class
 */
 class Scraper
 {
 	
+	/**
+	 * fires the fire method on the class passed to events:scrape command
+	 * @return string        A message saying the site was scraped.
+	 */
+	public function scrape($class)
+	{
+		$class = 'Events\repositories\scrapers\\' . $class;
+		$parser = new PhpSimpleHtmlDomParser;
+		$scraper = new $class($parser);
+		return $scraper->fire();
+	}
+	
+	/**
+	 * Stick the events we scraped into the DB.
+	 */
+	public function addToDB()
+	{
+		// TODO: Check the vendor ID to see if the event already exists.
+		// Save to DB
+		foreach($this->events as $eventNew)
+		{
+			if (!empty($eventNew['title'])) {
+				$entered = Events::create([
+					'title' => $eventNew['title'],
+					'description' => $eventNew['description'],
+					'vendor_event_id' => $eventNew['vendor_event_id'],
+					'hosted_by' => $eventNew['hosted_by'],
+					'event_type' => $eventNew['event_type'],
+					'location' => $eventNew['location'],
+					'created_by' => $eventNew['created_by'],
+					'start_time' => $eventNew['date']['start_time'],
+					'end_time' => $eventNew['date']['end_time']
+				]);
+
+				EventsTagsRelation::create([
+					'events_id' => $entered->id,
+					'tags_id' => $entered->event_type
+				]);
+			}
+		}
+	}
+
 	/**
 	 * simple cleanup function to trim and string tags
 	 */
