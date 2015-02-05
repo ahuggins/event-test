@@ -139,6 +139,9 @@
 									<a href="event/{{ $event['id'] }}">
 										<h3>{{ $event['title'] }}</h3>
 									</a>
+									<div class="location">
+										{{ $event['hosted_by'] }}
+									</div>
 									<div class="time">
 										{{ date('M d', strtotime( $event['start_time'] ) ) }} @
 										{{ date( 'h:i A', strtotime( $event['start_time'] ) ) }} - {{ date( 'h:i A', strtotime( $event['end_time'] ) ) }} 
