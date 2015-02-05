@@ -29,10 +29,16 @@ class BeerTrappe extends Scraper implements ScraperInterface
 	 */
 	public function scrape()
 	{
+		$this->html = $this->parser->file_get_html($this->firstUrl);
+		$this->setLocationData();
+		$this->setTagsAvailable();
+		// $this->scrape();
 		$this->nextMonthURL = html_entity_decode($this->html->find('.ai1ec-next-month', 0)->href);
 		$this->scraping();
 		$this->html = file_get_html($this->nextMonthURL);
 		$this->scraping();
+		$this->addToDb();
+		return "The BeerTrappe site was scraped.";
 	}
 
 	/**
@@ -103,10 +109,7 @@ class BeerTrappe extends Scraper implements ScraperInterface
 	{
 		
 		// Check the vendor ID to see if the event already exists.
-		$this->html = $this->parser->file_get_html($this->firstUrl);
-		$this->setLocationData();
-		$this->setTagsAvailable();
-		$this->scrape();
+		
 		
 
 		// Save to DB
@@ -131,6 +134,7 @@ class BeerTrappe extends Scraper implements ScraperInterface
 				]);
 			}
 		}
+		
 	}
 
 	/**

@@ -42,8 +42,8 @@ class Scrape extends Command {
 	 */
 	public function fire()
 	{
-		$this->scraper->addToDb();
-			// echo "<pre>";print_r($this->scraper->events);echo "</pre>";
+		$message = $this->scraper->scrape();
+		$this->info($message);
 	}
 
 	/**
@@ -51,12 +51,12 @@ class Scrape extends Command {
 	 *
 	 * @return array
 	 */
-	protected function getArguments()
-	{
-		return array(
-			// array('example', InputArgument::REQUIRED, 'An example argument.'),
-		);
-	}
+	// protected function getArguments()
+	// {
+		// return array(
+		// 	array('class', InputArgument::REQUIRED, 'The name of the class you want to have scraped.'),
+		// );
+	// }
 
 	/**
 	 * Get the console command options.
