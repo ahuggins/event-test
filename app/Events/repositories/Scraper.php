@@ -22,7 +22,7 @@ class Scraper
 		$scraper = new $class($parser);
 		return $scraper->fire();
 	}
-	
+
 	/**
 	 * Stick the events we scraped into the DB.
 	 */
@@ -32,23 +32,40 @@ class Scraper
 		// Save to DB
 		foreach($this->events as $eventNew)
 		{
-			if (!empty($eventNew['title'])) {
-				$entered = Events::create([
-					'title' => $eventNew['title'],
-					'description' => $eventNew['description'],
-					'vendor_event_id' => $eventNew['vendor_event_id'],
-					'hosted_by' => $eventNew['hosted_by'],
-					'event_type' => $eventNew['event_type'],
-					'location' => $eventNew['location'],
-					'created_by' => $eventNew['created_by'],
-					'start_time' => $eventNew['date']['start_time'],
-					'end_time' => $eventNew['date']['end_time']
-				]);
 
-				EventsTagsRelation::create([
-					'events_id' => $entered->id,
-					'tags_id' => $entered->event_type
-				]);
+			// if event exists...update it
+			if ( $exists = Events::where('vendor_event_id', '=', $eventNew['vendor_event_id'])->first() ) {
+				$exists['title'] = $eventNew['title'];
+				$exists['description'] = $eventNew['description'];
+				$exists['vendor_event_id'] = $eventNew['vendor_event_id'];
+				$exists['hosted_by'] = $eventNew['hosted_by'];
+				$exists['event_type'] = $eventNew['event_type'];
+				$exists['location'] = $eventNew['location'];
+				$exists['created_by'] = $eventNew['created_by'];
+				$exists['start_time'] = $eventNew['date']['start_time'];
+				$exists['end_time'] = $eventNew['date']['end_time'];
+				$exists->save();
+				print 'Updated: ' . $eventNew['title'] . PHP_EOL;
+			} else {
+				if (!empty($eventNew['title'])) {
+					$entered = Events::create([
+						'title' => $eventNew['title'],
+						'description' => $eventNew['description'],
+						'vendor_event_id' => $eventNew['vendor_event_id'],
+						'hosted_by' => $eventNew['hosted_by'],
+						'event_type' => $eventNew['event_type'],
+						'location' => $eventNew['location'],
+						'created_by' => $eventNew['created_by'],
+						'start_time' => $eventNew['date']['start_time'],
+						'end_time' => $eventNew['date']['end_time']
+					]);
+
+					EventsTagsRelation::create([
+						'events_id' => $entered->id,
+						'tags_id' => $entered->event_type
+					]);
+					print 'Event Added: ' . $entered['title'] . PHP_EOL;
+				}
 			}
 		}
 	}

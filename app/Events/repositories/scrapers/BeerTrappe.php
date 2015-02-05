@@ -69,7 +69,6 @@ class BeerTrappe extends Scraper
 				// $item['event_type'] = $this->eventTags($item['vendor_event_code']);
 				$item['event_type'] = 1;
 				$this->events[] = $item;
-				print 'Event Added: ' . $item['title'] . PHP_EOL;
 			}
 		}
 	}

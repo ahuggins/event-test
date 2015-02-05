@@ -70,6 +70,7 @@ class BlueStallion extends Scraper implements ScraperInterface
 				$item['created_by'] = 'admin';
 				$item['event_type'] = $this->eventTags($item['vendor_event_code']);
 				$this->events[] = $item;
+				
 			}
 		}
 	}
@@ -103,40 +104,6 @@ class BlueStallion extends Scraper implements ScraperInterface
 		} else {
 			print "There are no tags in the db" . PHP_EOL;
 			exit;
-		}
-	}
-
-	/**
-	 * Stick the events we scraped into the DB.
-	 */
-	public function addToDB()
-	{
-		
-		// Check the vendor ID to see if the event already exists.
-		
-		
-
-		// Save to DB
-		foreach($this->events as $eventNew)
-		{
-			if (!empty($eventNew['title'])) {
-				$entered = Events::create([
-					'title' => $eventNew['title'],
-					'description' => $eventNew['description'],
-					'vendor_event_id' => $eventNew['vendor_event_id'],
-					'hosted_by' => $eventNew['hosted_by'],
-					'event_type' => $eventNew['event_type'],
-					'location' => $eventNew['location'],
-					'created_by' => $eventNew['created_by'],
-					'start_time' => $eventNew['date']['start_time'],
-					'end_time' => $eventNew['date']['end_time']
-				]);
-
-				EventsTagsRelation::create([
-					'events_id' => $entered->id,
-					'tags_id' => $entered->event_type
-				]);
-			}
 		}
 	}
 
