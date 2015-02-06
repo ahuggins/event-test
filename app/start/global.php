@@ -104,3 +104,14 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+/*
+|--------------------------------------------------------------------------
+| Require The Helpers File
+|--------------------------------------------------------------------------
+|
+| Adding a Helpers file in order to have some helpful functions usable throughout app.
+|
+*/
+
+require app_path().'/helpers.php';

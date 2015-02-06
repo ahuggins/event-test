@@ -34,8 +34,8 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/events">All Events</a></li>
-					<li><a href="/myevents">My Events</a></li>
+					<li class="{{ set_active(['/', 'events']) }}"><a href="/">All Events</a></li>
+					<li class="{{ set_active('myevents') }}"><a href="/myevents">My Events</a></li>
 				</ul>
 				<form class="navbar-form navbar-left" role="search">
 					<div class="form-group">
@@ -44,7 +44,7 @@
 					<button type="submit" class="btn btn-default">Submit</button>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
+					<li class="dropdown {{ set_active(['event/create', 'profile/edit']) }}">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							@if( Auth::user() )
 								Hello {{ Auth::user()->username }} 
@@ -55,8 +55,8 @@
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							@if(Auth::user())
-								<li><a href="{{ URL::to('event/create') }}">Create Event</a></li>
-								<li><a href="{{ URL::to('profile/edit') }}">Edit Profile</a></li>
+								<li class="{{ set_active('event/create') }}"><a href="{{ URL::to('event/create') }}">Create Event</a></li>
+								<li class="{{ set_active('profile/edit') }}"><a href="{{ URL::to('profile/edit') }}">Edit Profile</a></li>
 								<li class="divider"></li>
 								<li><a href="{{ URL::to('/logout') }}">Logout</a></li>
 							@else
