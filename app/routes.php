@@ -35,3 +35,6 @@ Route::get('events', 'EventController@index');
 
 Route::get('/', 'EventController@index');
 Route::get('/myevents', 'EventController@viewMyEvents');
+
+
+Route::get('summary', 'EmailController@summary');

@@ -60,6 +60,10 @@ class BeerTrappe extends Scraper
 				$item['vendor_event_id'] = $event->parent()->{'data-instance-id'};
 				
 				$item['description'] = $event->parent()->next_sibling()->children(2)->plaintext;
+				if (empty($item['description'])) {
+					$item['description'] = $event->parent()->next_sibling()->children(3)->plaintext;
+				}
+				
 				// $item['vendor_event_code'] = $event->parent()->next_sibling()->children(0)->children(0)->title;
 				
 				$item['title'] = $this->checkUK($this->cleanup($event->find('.ai1ec-event-title', 0)->plaintext, ENT_COMPAT, 'utf-8'));

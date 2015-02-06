@@ -9,9 +9,9 @@ class EventsUsers extends Eloquent {
 	 */
 	protected $table = 'events-users';
 
-	public static function attending()
+	public static function attending($user_id)
 	{
-		$attending = EventsUsers::where('users_id', '=', Auth::user()->id)->get();
+		$attending = EventsUsers::where('users_id', '=', $user_id)->get();
 		return $attending;
 	}
 
@@ -32,7 +32,7 @@ class EventsUsers extends Eloquent {
 
 	public static function getIds()
 	{
-		$attending = EventsUsers::attending();
+		$attending = EventsUsers::attending(Auth::user()->id);
 		$attends = array();
 		if (empty($attending)) {
 			return $attends;

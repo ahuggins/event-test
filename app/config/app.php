@@ -123,6 +123,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
 		'Monashee\PhpSimpleHtmlDomParser\PhpSimpleHtmlDomParserServiceProvider',
+		'Indatus\Dispatcher\ServiceProvider',
 	),
 
 	/*
