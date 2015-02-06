@@ -807,7 +807,7 @@ body.outlook p {
 
                         <table class="twelve columns">
                           <tr>
-                            <td class="six sub-columns">
+                            <td class="twelve sub-columns">
                               <a href="http://lex.events">Lex.events</a>
                             </td>
                             <td class="expander"></td>
