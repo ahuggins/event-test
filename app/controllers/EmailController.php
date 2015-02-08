@@ -39,4 +39,19 @@ class EmailController extends BaseController
 			}
 		}
 	}
+
+	public function signUps()
+	{
+		$users = User::whereBetween('created_at', array( 
+						date('Y-m-d', strtotime('-7 days')), 
+						date('Y-m-d', strtotime('now'))) )
+						->get();
+		Mail::send('emails.app.summary-sign-ups', ['users' => $users], function( $message ) use ( $users ) 
+		{
+			$message->to('andrewhuggins@gmail.com')->subject('Lex.events weekly sign ups!');
+		});
+		// return View::make('emails.app.summary-sign-ups', ['users' => $users]);
+		// return $users;
+	}
+
 }
