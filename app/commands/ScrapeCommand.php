@@ -1,12 +1,13 @@
-<?php 
+<?php
 
-use Illuminate\Console\Command;
+use Indatus\Dispatcher\Scheduling\ScheduledCommand;
+use Indatus\Dispatcher\Scheduling\Schedulable;
+use Indatus\Dispatcher\Drivers\Cron\Scheduler;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Events\repositories\Scraper;
 
-
-class ScrapeCommand extends Command {
+class ScrapeCommand extends ScheduledCommand {
 
 	/**
 	 * The console command name.
@@ -31,7 +32,7 @@ class ScrapeCommand extends Command {
 	 */
 	public function __construct(Scraper $scraper)
 	{
-		
+
 		parent::__construct();
 		$this->scraper = $scraper;
 	}
@@ -49,6 +50,31 @@ class ScrapeCommand extends Command {
 	}
 
 	/**
+	* When a command should run
+	*
+	* @param Scheduler $scheduler
+	* @return \Indatus\Dispatcher\Scheduling\Schedulable
+	*/
+	public function schedule(Schedulable $scheduler)
+	{
+
+		return [
+					// equivalent to: php /path/to/artisan command:name /path/to/file
+					$scheduler->args(['BlueStallion'])
+							->daily()
+							->hours(13),
+
+					// equivalent to: php /path/to/artisan command:name /path/to/file --force --toDelete="expired" --exclude="admins" --exclude="developers"
+					$scheduler->args(['BeerTrappe'])
+							->daily()
+							->hours(13)
+			];
+
+		return $scheduler->daysOfTheWeek([Scheduler::THURSDAY])->hours(12)->minutes(30);
+		// return $scheduler;
+	}
+
+	/**
 	 * Get the console command arguments.
 	 *
 	 * @return array
@@ -60,16 +86,9 @@ class ScrapeCommand extends Command {
 		);
 	}
 
-	/**
-	 * Get the console command options.
-	 *
-	 * @return array
-	 */
-	protected function getOptions()
+	public function environment()
 	{
-		return array(
-			// array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
-		);
+		return['production'];
 	}
 
 }
