@@ -40,7 +40,7 @@ class SummaryEmailSignUps extends ScheduledCommand {
 	 */
 	public function schedule(Schedulable $scheduler)
 	{
-		return $scheduler->daily()->hours(1);
+		return $scheduler->daily()->hourly()->minutes(15);
 	}
 
 	/**
