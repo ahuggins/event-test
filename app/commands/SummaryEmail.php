@@ -53,4 +53,9 @@ class SummaryEmail extends ScheduledCommand {
 	{
 		App::make('EmailController')->summary();
 	}
+
+	public function environment()
+	{
+		return ['production'];
+	}
 }
