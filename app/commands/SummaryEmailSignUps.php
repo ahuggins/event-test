@@ -40,7 +40,7 @@ class SummaryEmailSignUps extends ScheduledCommand {
 	 */
 	public function schedule(Schedulable $scheduler)
 	{
-		return $scheduler->daily()->hourly()->minutes(15);
+		return $scheduler->daily()->hourly()->everyMinutes(1);
 	}
 
 	/**
@@ -51,6 +51,11 @@ class SummaryEmailSignUps extends ScheduledCommand {
 	public function fire()
 	{
 		App::make('EmailController')->signUps();
+	}
+
+	public function environment()
+	{
+		return ['production'];
 	}
 
 }
