@@ -62,8 +62,8 @@ class ScrapeCommand extends ScheduledCommand {
 					// equivalent to: php /path/to/artisan command:name /path/to/file
 					$scheduler->args(['BlueStallion'])
 							->daily()
-							->hourly()
-							->everyMinutes(1),
+							->hours(13)
+							->minutes(1),
 
 					// equivalent to: php /path/to/artisan command:name /path/to/file --force --toDelete="expired" --exclude="admins" --exclude="developers"
 					$scheduler->args(['BeerTrappe'])
