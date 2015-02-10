@@ -6,16 +6,16 @@
 	<title>Lex.events</title>
 	{{ HTML::script('js/jquery-1.11.1.min.js'); }}
 	{{ HTML::script('js/bootstrap.min.js'); }}
-	
-	
+
+
 	{{ HTML::style('css/bootstrap.min.css'); }}
 
 	@yield('scripts')
 	{{ HTML::style('css/style.css'); }}
 	<link href='http://fonts.googleapis.com/css?family=Lato:100,400,900' rel='stylesheet' type='text/css'>
-	
+
 	@yield('ready')
-	
+
 </head>
 <body>
 	<nav class="navbar navbar-default" role="navigation">
@@ -37,18 +37,18 @@
 					<li class="{{ set_active(['/', 'events']) }}"><a href="/">All Events</a></li>
 					<li class="{{ set_active('myevents') }}"><a href="/myevents">My Events</a></li>
 				</ul>
-				<form class="navbar-form navbar-left" role="search">
+				<!-- <form class="navbar-form navbar-left" role="search">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Search">
 					</div>
 					<button type="submit" class="btn btn-default">Submit</button>
-				</form>
+				</form> -->
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown {{ set_active(['event/create', 'profile/edit']) }}">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							@if( Auth::user() )
-								Hello {{ Auth::user()->username }} 
-							@else 
+								Hello {{ Auth::user()->username }}
+							@else
 								Menu
 							@endif
 							<span class="caret"></span>
@@ -62,7 +62,7 @@
 							@else
 								<li><a href="{{ URL::to('/login') }}">Sign In</a></li>
 								<li><a href="{{ URL::to('/users/create') }}">Sign Up</a></li>
-							@endif						
+							@endif
 						</ul>
 					</li>
 				</ul>
@@ -70,7 +70,7 @@
 		</div><!-- /.container-fluid -->
 	</nav>
 	@yield('Content')
-	
+
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
