@@ -29,7 +29,12 @@ class EmailController extends BaseController
 
 			if (!empty($attends)) {
 
-				$events = Events::whereIn('id', $attends)->orderBy('start_time', 'ASC')->get();
+				$events = Events::whereIn('id', $attends)
+									->whereBetween('start_time', array(
+										date('Y-m-d', strtotime('now')),
+										date('Y-m-d', strtotime('+30 days'))) )
+									->orderBy('start_time', 'ASC')
+									->get();
 
 				Mail::send('emails.app.summary', ['events' => $events, 'user' => $user], function( $message ) use ( $user )
 				{
