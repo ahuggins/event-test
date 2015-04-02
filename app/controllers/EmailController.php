@@ -36,11 +36,14 @@ class EmailController extends BaseController
 									->orderBy('start_time', 'ASC')
 									->get();
 
-				Mail::send('emails.app.summary', ['events' => $events, 'user' => $user], function( $message ) use ( $user )
-				{
-					$message->to($user->email)->subject('Lex.events weekly events!');
-				});
+				if (!empty($events)) {
 
+					Mail::send('emails.app.summary', ['events' => $events, 'user' => $user], function( $message ) use ( $user )
+					{
+						$message->to($user->email)->subject('Lex.events weekly events!');
+					});
+					
+				}
 			}
 		}
 	}
