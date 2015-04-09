@@ -26,7 +26,7 @@ class EventController extends \BaseController {
      */
     public function create()
     {
-        
+
         $user = Auth::user()->username;
         $tags = Tags::all();
         $event = array();
@@ -174,10 +174,10 @@ class EventController extends \BaseController {
     public function attend()
     {
         if (Input::get('attending') == 'true') {
-            EventsUsers::drop(Input::get('events_id'));        
+            EventsUsers::drop(Input::get('events_id'));
         } else {
             EventsUsers::store(Input::get('events_id'));
-        }        
+        }
     }
 
     public function viewMyEvents()
@@ -189,7 +189,14 @@ class EventController extends \BaseController {
         $attends = EventsUsers::getIds();
         $events = [];
         if (!empty($attends)) {
-            $events = Events::whereIn('id', $attends)->get();
+            // $events = Events::whereIn('id', $attends)->get();
+
+        $events = Events::whereIn('id', $attends)
+                            ->whereBetween('start_time', array(
+                                date('Y-m-d', strtotime('now')),
+                                date('Y-m-d', strtotime('+30 days'))) )
+                            ->orderBy('start_time', 'ASC')
+                            ->get();
         }
         return View::make('events/all', ['events' => $events, 'tags' => $tags, 'attending' => $attends]);
     }
