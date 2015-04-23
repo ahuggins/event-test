@@ -89,7 +89,8 @@ class BlueStallion extends Scraper implements ScraperInterface
 			'Special Events' => '1',
 			'Group Meeting' => '7',
 			'Recurring Event' => '9',
-			'TV Event' => '5'
+			'TV Event' => '5',
+			'Beer Tapping' => '1'
 		];
 		if (array_key_exists($vendor_event_code, $vendor_codes)) {
 			return $vendor_codes[$vendor_event_code];
