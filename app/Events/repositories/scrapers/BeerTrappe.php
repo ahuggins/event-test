@@ -46,26 +46,30 @@ class BeerTrappe extends Scraper
 	public function scraping()
 	{
 		$item['year'] = $this->html->find('.ai1ec-next-year', 0)->plaintext - 1;
-			
+
 		// Find all article blocks
 		foreach($this->html->find('.ai1ec-day') as $day) {
 			foreach( $day->find('.ai1ec-event') as $event){
 				$item['raw_date'] = $event->parent()->next_sibling()->children(1)->plaintext;
-				
-				$item['date'] = $this->dates( 
-					$this->cleanup( $item['raw_date'] ), $item['year'] 
+
+				$item['date'] = $this->dates(
+					$this->cleanup( $item['raw_date'] ), $item['year']
 				);
-				
-				
-				$item['vendor_event_id'] = $event->parent()->{'data-instance-id'};
-				
+
+
+
+				$item['classes'] = $event->parent()->{'class'};
+				preg_match('@(ai1ec-event-id-)[1-9]*@', $item['classes'], $matches);
+				$id = preg_replace("/ai1ec-event-id-/", '', $matches[0]);
+				$event_id = preg_replace("/[^0-9]/", '', $id);
+				$item['vendor_event_id'] = $event_id;
 				$item['description'] = $event->parent()->next_sibling()->children(2)->plaintext;
 				if (empty($item['description'])) {
 					$item['description'] = $event->parent()->next_sibling()->children(3)->plaintext;
 				}
-				
+
 				// $item['vendor_event_code'] = $event->parent()->next_sibling()->children(0)->children(0)->title;
-				
+
 				$item['title'] = $this->checkUK($this->cleanup($event->find('.ai1ec-event-title', 0)->plaintext, ENT_COMPAT, 'utf-8'));
 				$item['location'] = $this->location->address . '<br>' . $this->location->city . ' ' . $this->location->state . ', ' . $this->location->zip;
 				$item['hosted_by'] = $this->location->name;
@@ -105,7 +109,7 @@ class BeerTrappe extends Scraper
 		}
 	}
 
-	
+
 
 	/**
 	 * Pulls the location data from the DB and sets it to a property on the class.

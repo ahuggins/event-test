@@ -9,7 +9,8 @@
 		"ckeditor/ckeditor": "4.4.4",
 		"guzzlehttp/guzzle": "~4.0",
 		"monashee/php-simple-html-dom-parser": "dev-master",
-		"Indatus/Dispatcher": "~1.4"
+		"Indatus/Dispatcher": "~1.4",
+		"johngrogg/ics-parser": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

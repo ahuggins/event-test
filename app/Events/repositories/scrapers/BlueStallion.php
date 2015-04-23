@@ -47,7 +47,7 @@ class BlueStallion extends Scraper implements ScraperInterface
 	public function scraping()
 	{
 		$item['year'] = $this->html->find('.ai1ec-next-year', 0)->plaintext - 1;
-			
+
 		// Find all article blocks
 		foreach($this->html->find('.ai1ec-day') as $day) {
 			foreach( $day->find('.ai1ec-event') as $event){
@@ -55,22 +55,26 @@ class BlueStallion extends Scraper implements ScraperInterface
 				if ($event->find('.ai1ec-event-time', 0)) {
 					$item['date'] = $this->dates(
 						$this->cleanup(
-							$item['raw_date'] 
+							$item['raw_date']
 							), $item['year']);
-				} 
-				
-				$item['vendor_event_id'] = $event->parent()->{'data-instance-id'};
+				}
+
+				$item['classes'] = $event->parent()->{'class'};
+				preg_match('@(ai1ec-event-id-)[1-9]*@', $item['classes'], $matches);
+				$id = preg_replace("/ai1ec-event-id-/", '', $matches[0]);
+				$event_id = preg_replace("/[^0-9]/", '', $id);
+				$item['vendor_event_id'] = $event_id;
 				
 				$item['description'] = $event->parent()->next_sibling()->children(4)->plaintext;
 				$item['vendor_event_code'] = $event->parent()->next_sibling()->children(0)->children(0)->title;
-				
+
 				$item['title'] = $this->checkUK($this->cleanup($event->find('.ai1ec-event-title', 0)->plaintext, ENT_COMPAT, 'utf-8'));
 				$item['location'] = $this->location->address . '<br>' . $this->location->city . ' ' . $this->location->state . ', ' . $this->location->zip;
 				$item['hosted_by'] = $this->location->name;
 				$item['created_by'] = 'admin';
 				$item['event_type'] = $this->eventTags($item['vendor_event_code']);
 				$this->events[] = $item;
-				
+
 			}
 		}
 	}
@@ -113,7 +117,7 @@ class BlueStallion extends Scraper implements ScraperInterface
 	public function setLocationData()
 	{
 		if( $location = Locations::where('id', '=', $this->location_id)->first() ) {
-			$this->location = $location;	
+			$this->location = $location;
 		} else {
 			print "Location: " . $this->location_id . " does not exist in Database." . PHP_EOL;
 			exit;
