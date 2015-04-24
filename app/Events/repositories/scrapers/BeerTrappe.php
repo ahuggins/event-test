@@ -65,7 +65,7 @@ class BeerTrappe extends Scraper
 
 				$item['vendor_event_code'] = $event->parent()->next_sibling()->children(0)->children(0)->title;
 
-				$item['title'] = $this->checkUK($this->cleanup($event->find('.ai1ec-event-title', 0)->plaintext, ENT_COMPAT, 'utf-8'));
+				$item['title'] = $this->cleanup($event->find('.ai1ec-event-title', 0)->plaintext, ENT_COMPAT, 'utf-8');
 				$item['location'] = $this->location->address . '<br>' . $this->location->city . ' ' . $this->location->state . ', ' . $this->location->zip;
 				$item['hosted_by'] = $this->location->name;
 				$item['created_by'] = 'admin';

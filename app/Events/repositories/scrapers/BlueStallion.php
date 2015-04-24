@@ -39,6 +39,7 @@ class BlueStallion extends Scraper implements ScraperInterface
 
 		$this->html = file_get_html($this->nextMonthURL);
 		$this->scraping();
+		// print_r($this->events);
 		$this->addToDb();
 		return "The BlueStallion site was scraped";
 	}
@@ -52,21 +53,19 @@ class BlueStallion extends Scraper implements ScraperInterface
 		// Find all article blocks
 		foreach($this->html->find('.ai1ec-day') as $day) {
 			foreach( $day->find('.ai1ec-event') as $event){
-				$item['raw_date'] = $event->parent()->next_sibling()->children(2)->plaintext;
-				if ($event->find('.ai1ec-event-time', 0)) {
+				$item['raw_date'] = trim($event->parent()->next_sibling()->children(2)->plaintext);
+
+				// if ($event->find('.ai1ec-event-time', 0)) {
 					$item['date'] = $this->dates(
 						$this->cleanup(
 							$item['raw_date']
 							), $item['year']);
-				}
-
+				// }
+				// if ($this->checkUK($this->cleanup($event->find('.ai1ec-event-title', 0)->plaintext, ENT_COMPAT, 'utf-8')) == 'Beer Release: Maibock') {
+					// print_r($item);
+				// }
 
 				$item['vendor_event_id'] = $event->parent()->{'data-instance-id'};
-				// $item['classes'] = $event->parent()->{'class'};
-				// preg_match('@(ai1ec-event-id-)[1-9]*@', $item['classes'], $matches);
-				// $id = preg_replace("/ai1ec-event-id-/", '', $matches[0]);
-				// $event_id = preg_replace("/[^0-9]/", '', $id);
-				// $item['vendor_event_id'] = $event_id;
 
 				$item['description'] = $event->parent()->next_sibling()->children(4)->plaintext;
 				$item['vendor_event_code'] = $event->parent()->next_sibling()->children(0)->children(0)->title;
@@ -126,5 +125,28 @@ class BlueStallion extends Scraper implements ScraperInterface
 			print "Location: " . $this->location_id . " does not exist in Database." . PHP_EOL;
 			exit;
 		}
+	}
+
+	/**
+	 * Checks to see if the Title of the event contains UK...if so, empties the title so we can skip putting it in the DB easily
+	 */
+	private function checkUK($title)
+	{
+		$title = $this->clean($title);
+		$title = str_replace('8217', "'", $title);
+		$title = str_replace('038', "-", $title);
+		if (preg_match('/^UK/', $title)) {
+			return '';
+		}
+		if (preg_match('/^Mission Monday/', $title)) {
+			return '';
+		}
+		if (preg_match('/^11/', $title)) {
+			return '';
+		}
+		if (preg_match('/^Walking Dead/', $title)) {
+			return '';
+		}
+		return $title;
 	}
 }

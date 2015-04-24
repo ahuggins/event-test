@@ -109,8 +109,12 @@ class Scraper
 		if (isset($date)) {
 			$temp = explode('â', $date);
 			$start = explode('@', $this->cleanup($temp[0]));
-			$start_time = $start[0] . ' ' .$start[1] . ' ' . $year;
-
+			if (isset($start[1])) {
+				$start_time = $start[0] . ' ' . $start[1] . ' ' . $year;
+			} else {
+				$day = str_replace(' all-day', '', $date);
+				$start_time = $day . ' ' . $year . ' 12:00:00';
+			}
 		}
 		$start_time = date('Y-m-d H:i:s', strtotime($start_time));
 
@@ -135,26 +139,4 @@ class Scraper
 	   return preg_replace('/[^A-Za-z0-9\ :-]/', '', $string); // Removes special chars.
 	}
 
-	/**
-	 * Checks to see if the Title of the event contains UK...if so, empties the title so we can skip putting it in the DB easily
-	 */
-	function checkUK($title)
-	{
-		$title = $this->clean($title);
-		$title = str_replace('8217', "'", $title);
-		$title = str_replace('038', "-", $title);
-		if (preg_match('/^UK/', $title)) {
-			return '';
-		}
-		if (preg_match('/^Mission Monday/', $title)) {
-			return '';
-		}
-		if (preg_match('/^11/', $title)) {
-			return '';
-		}
-		if (preg_match('/^Walking Dead/', $title)) {
-			return '';
-		}
-		return $title;
-	}
 }
