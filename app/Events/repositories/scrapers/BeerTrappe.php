@@ -56,21 +56,14 @@ class BeerTrappe extends Scraper
 					$this->cleanup( $item['raw_date'] ), $item['year']
 				);
 
-
 				$item['vendor_event_id'] = $event->parent()->{'data-instance-id'};
 
-				// $item['classes'] = $event->parent()->{'class'};
-				// preg_match('@(ai1ec-event-id-)[1-9]*@', $item['classes'], $matches);
-				// $id = preg_replace("/ai1ec-event-id-/", '', $matches[0]);
-				// $event_id = preg_replace("/[^0-9]/", '', $id);
-				// $item['vendor_event_id'] = $event_id;
-
-				$item['description'] = $event->parent()->next_sibling()->children(2)->plaintext;
+				$item['description'] = trim($event->parent()->next_sibling()->children(2)->plaintext);
 				if (empty($item['description'])) {
-					$item['description'] = $event->parent()->next_sibling()->children(3)->plaintext;
+					$item['description'] = trim($event->parent()->next_sibling()->children(3)->plaintext);
 				}
 
-				// $item['vendor_event_code'] = $event->parent()->next_sibling()->children(0)->children(0)->title;
+				$item['vendor_event_code'] = $event->parent()->next_sibling()->children(0)->children(0)->title;
 
 				$item['title'] = $this->checkUK($this->cleanup($event->find('.ai1ec-event-title', 0)->plaintext, ENT_COMPAT, 'utf-8'));
 				$item['location'] = $this->location->address . '<br>' . $this->location->city . ' ' . $this->location->state . ', ' . $this->location->zip;
