@@ -134,6 +134,7 @@ class BlueStallion extends Scraper implements ScraperInterface
 	{
 		$title = $this->clean($title);
 		$title = str_replace('8217', "'", $title);
+		$title = str_replace('8211', "-", $title);
 		$title = str_replace('038', "-", $title);
 		if (preg_match('/^UK/', $title)) {
 			return '';
