@@ -14,6 +14,7 @@ class BlueStallion extends Scraper implements ScraperInterface
 	public $location_id = 1;
 	public $events = [];
 	public $firstUrl = 'http://bluestallionbrewing.com/events/action~month/request_format~html/';
+	// public $firstUrl = 'http://madbullshit.com/calendar/action~month/request_format~html/';
 	public $nextMonthURL = '';
 	protected $parser;
 	public $location;
@@ -35,6 +36,7 @@ class BlueStallion extends Scraper implements ScraperInterface
 		// $this->scrape();
 		$this->nextMonthURL = html_entity_decode($this->html->find('.ai1ec-next-month', 0)->href);
 		$this->scraping();
+
 		$this->html = file_get_html($this->nextMonthURL);
 		$this->scraping();
 		$this->addToDb();
@@ -47,7 +49,6 @@ class BlueStallion extends Scraper implements ScraperInterface
 	public function scraping()
 	{
 		$item['year'] = $this->html->find('.ai1ec-next-year', 0)->plaintext - 1;
-
 		// Find all article blocks
 		foreach($this->html->find('.ai1ec-day') as $day) {
 			foreach( $day->find('.ai1ec-event') as $event){
@@ -59,6 +60,7 @@ class BlueStallion extends Scraper implements ScraperInterface
 							), $item['year']);
 				}
 
+
 				$item['vendor_event_id'] = $event->parent()->{'data-instance-id'};
 				// $item['classes'] = $event->parent()->{'class'};
 				// preg_match('@(ai1ec-event-id-)[1-9]*@', $item['classes'], $matches);
@@ -68,7 +70,6 @@ class BlueStallion extends Scraper implements ScraperInterface
 
 				$item['description'] = $event->parent()->next_sibling()->children(4)->plaintext;
 				$item['vendor_event_code'] = $event->parent()->next_sibling()->children(0)->children(0)->title;
-
 				$item['title'] = $this->checkUK($this->cleanup($event->find('.ai1ec-event-title', 0)->plaintext, ENT_COMPAT, 'utf-8'));
 				$item['location'] = $this->location->address . '<br>' . $this->location->city . ' ' . $this->location->state . ', ' . $this->location->zip;
 				$item['hosted_by'] = $this->location->name;
@@ -78,6 +79,7 @@ class BlueStallion extends Scraper implements ScraperInterface
 
 			}
 		}
+		// print_r($this->events);
 	}
 
 	public function eventTags($vendor_event_code)
