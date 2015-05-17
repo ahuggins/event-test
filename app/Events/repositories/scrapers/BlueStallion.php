@@ -41,7 +41,7 @@ class BlueStallion extends Scraper implements ScraperInterface
 		$this->scraping();
 		// print_r($this->events);
 		$this->addToDb();
-		return "The BlueStallion site was scraped";
+		return "The " . (new \ReflectionClass($this))->getShortName() . " site was scraped";
 	}
 
 	/**

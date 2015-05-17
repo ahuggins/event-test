@@ -37,7 +37,7 @@ class BeerTrappe extends Scraper
 		$this->html = file_get_html($this->nextMonthURL);
 		$this->scraping();
 		$this->addToDb();
-		return "The BeerTrappe site was scraped.";
+		return "The " . (new \ReflectionClass($this))->getShortName() . " site was scraped.";
 	}
 
 	/**

@@ -15,7 +15,7 @@
 		    layoutMode: 'masonry'
 		  });
 		});
-	  	
+
 	  	$('form[data-remote]').on('submit', function(e) {
 	  		e.preventDefault();
 			var form = $(this);
@@ -29,12 +29,12 @@
 				success: function() {
 					if (value == 'Attend') {
 						form.find('input[name=attending]').val('true');
-						form.find('input[type=submit]').val('Attending');	
+						form.find('input[type=submit]').val('Attending');
 					} else {
 						form.find('input[name=attending]').val('false');
 						form.find('input[type=submit]').val('Attend');
 					};
-					
+
 				}
 			});
 		});
@@ -82,7 +82,7 @@
 								<button class="btn btn-default" data-filter=".{{ $tag['filter_text'] }}">{{ $tag['tag_text'] }}</button>
 							@endforeach
 						@endif
-						
+
 					</div>
 				</div>
 				<div class="ui-group col-md-12">
@@ -105,29 +105,9 @@
 				<div id="events">
 					@if (isset($events))
 						@forelse($events as $event)
-						
-							<?php 
-								$class = '';
-								if ( date('Ymd') == date('Ymd', strtotime($event->start_time) ) ) {
-									$class[] = 'today';
-								} elseif ( date('Ymd', strtotime('+1 day') ) == date('Ymd', strtotime($event->start_time) ) ) {
-									$class[] = 'tomorrow';
-								} elseif(
-									date('Ymd', strtotime('next Thursday') ) == date('Ymd', strtotime($event->start_time) ) ||
-									date('Ymd', strtotime('next Friday') ) == date('Ymd', strtotime($event->start_time) ) ||
-									date('Ymd', strtotime('next Saturday') ) == date('Ymd', strtotime($event->start_time) ) ||
-									date('Ymd', strtotime('next Sunday') ) == date('Ymd', strtotime($event->start_time) ) 
-									) {
-									$class[] = "this-weekend";
-								}
-								if( ( date('W') == date('W', strtotime($event->start_time) ) ) )
-								{
-									$class[] = 'this-week';
-								}
-								elseif( ( date('W', strtotime('+1 week')) == date('W', strtotime($event->start_time) ) ) )
-								{
-									$class[] = 'next-week';
-								}
+
+							<?php
+								$class = Events::getTimeClass($event->start_time);
 							 ?>
 							 <div class="event col-xs-12 col-sm-6 col-md-4 col-lg-3 clearfix @if( is_array($class) ) {{ implode(' ', $class) }} @endif @foreach($event['Tags'] as $tag) {{ $tag['filter_text'] }} @endforeach">
 							 	@if ($event->event_image)
@@ -144,8 +124,8 @@
 									</div>
 									<div class="time">
 										{{ date('M d', strtotime( $event['start_time'] ) ) }} @
-										{{ date( 'h:i A', strtotime( $event['start_time'] ) ) }} - {{ date( 'h:i A', strtotime( $event['end_time'] ) ) }} 
-									</div>	
+										{{ date( 'h:i A', strtotime( $event['start_time'] ) ) }} - {{ date( 'h:i A', strtotime( $event['end_time'] ) ) }}
+									</div>
 									<div class="description">
 										{{ $event['description'] }}
 									</div>
@@ -158,20 +138,20 @@
 														{{ Form::submit('Attending', ['class' => 'btn btn-default btn-xs pull-left']) }}
 													@else
 														{{ Form::hidden('attending', 'false') }}
-														{{ Form::submit('Attend', ['class' => 'btn btn-default btn-xs pull-left']) }}		
-													@endif																				
+														{{ Form::submit('Attend', ['class' => 'btn btn-default btn-xs pull-left']) }}
+													@endif
 												@endif
-												
-											
-										{{ Form::close() }}		
-										
+
+
+										{{ Form::close() }}
+
 										@if ($event['created_by'] == Auth::user()->username)
 											<a href="event/{{ $event['id'] }}/edit">
-												<button class="btn btn-default btn-xs pull-right">Edit</button>	
+												<button class="btn btn-default btn-xs pull-right">Edit</button>
 											</a>
 										@endif
 									</div>
-								</div> 
+								</div>
 
 							</div>
 						@empty

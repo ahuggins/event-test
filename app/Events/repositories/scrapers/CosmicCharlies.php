@@ -39,7 +39,7 @@ class CosmicCharlies extends Scraper
 		// $this->html = file_get_html($this->nextMonthURL);
 		// $this->scraping();
 		$this->addToDb();
-		return "CosmicCharlies was scraped.";
+		return (new \ReflectionClass($this))->getShortName() . " was scraped.";
 	}
 
 	/**

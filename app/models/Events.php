@@ -34,4 +34,30 @@ class Events extends Eloquent implements UserInterface, RemindableInterface {
 		$events = Events::with('Tags')->orderBy('start_time', 'ASC')->whereBetween('start_time', array( date('Y-m-d', strtotime('now')), date('Y-m-d', strtotime('+30 days'))) )->get();
 		return $events;
 	}
+
+	public static function getTimeClass($start_time)
+	{
+		$class = '';
+		if ( date('Ymd') == date('Ymd', strtotime($start_time) ) ) {
+			$class[] = 'today';
+		} elseif ( date('Ymd', strtotime('+1 day') ) == date('Ymd', strtotime($start_time) ) ) {
+			$class[] = 'tomorrow';
+		} elseif(
+			date('Ymd', strtotime('next Thursday') ) == date('Ymd', strtotime($start_time) ) ||
+			date('Ymd', strtotime('next Friday') ) == date('Ymd', strtotime($start_time) ) ||
+			date('Ymd', strtotime('next Saturday') ) == date('Ymd', strtotime($start_time) ) ||
+			date('Ymd', strtotime('next Sunday') ) == date('Ymd', strtotime($start_time) )
+			) {
+			$class[] = 'this-weekend';
+		}
+		if( ( date('W') == date('W', strtotime($start_time) ) ) )
+		{
+			$class[] = 'this-week';
+		}
+		elseif( ( date('W', strtotime('+1 week')) == date('W', strtotime($start_time) ) ) )
+		{
+			$class[] = 'next-week';
+		}
+		return $class;
+	}
 }

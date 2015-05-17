@@ -12,7 +12,7 @@ return array(
 	| application. If disabled, a simple generic error page is shown.
 	|
 	*/
-	
+
 	'debug' => false,
 
 	/*
@@ -191,7 +191,6 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Debugbar' 		  => 'Barryvdh\Debugbar\Facade',
-
 	),
 
 );
