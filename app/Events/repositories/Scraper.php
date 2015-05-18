@@ -78,10 +78,14 @@ class Scraper
 							'end_time' => $eventNew['date']['end_time']
 						]);
 
-						EventsTagsRelation::create([
-							'events_id' => $entered->id,
-							'tags_id' => $entered->event_type
-						]);
+						$hold = explode(',', $entered['event_type']);
+						foreach ($hold as $type) {
+							EventsTagsRelation::create([
+								'events_id' => $entered->id,
+								'tags_id' => $type
+							]);
+						}
+
 						print 'Added: ' . $entered['title'] . PHP_EOL;
 					}
 				}

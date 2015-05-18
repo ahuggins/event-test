@@ -91,7 +91,11 @@ class ScrapeCommand extends ScheduledCommand {
 					$scheduler->args(['Paulies'])
 							->daily()
 							->hours(13)
-							->minutes(35)
+							->minutes(35),
+					$scheduler->args(['NOLI'])
+							->daily()
+							->hours(13)
+							->minutes(40)
 			];
 
 		return $scheduler->daysOfTheWeek([Scheduler::THURSDAY])->hours(12)->minutes(30);
