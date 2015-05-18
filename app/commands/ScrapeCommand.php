@@ -57,14 +57,12 @@ class ScrapeCommand extends ScheduledCommand {
 	*/
 	public function schedule(Schedulable $scheduler)
 	{
-
 		return [
 					// equivalent to: php /path/to/artisan command:name /path/to/file
 					$scheduler->args(['BlueStallion'])
 							->daily()
 							->hours(13)
 							->minutes(1),
-
 					// equivalent to: php /path/to/artisan command:name /path/to/file --force --toDelete="expired" --exclude="admins" --exclude="developers"
 					$scheduler->args(['BeerTrappe'])
 							->daily()
@@ -77,7 +75,11 @@ class ScrapeCommand extends ScheduledCommand {
 					$scheduler->args(['AlsBar'])
 							->daily()
 							->hours(13)
-							->minutes(15)
+							->minutes(15),
+					$scheduler->args(['NatashasBistro'])
+							->daily()
+							->hours(13)
+							->minutes(20)
 			];
 
 		return $scheduler->daysOfTheWeek([Scheduler::THURSDAY])->hours(12)->minutes(30);
