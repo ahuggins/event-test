@@ -844,13 +844,13 @@ body.outlook p {
                             @foreach ( $events as $event )
                             <div class="event">
                                 <div class="event-image">
-                                    <a href="{{ URL::to('/') }}/event/{{ $event['id'] }}">
-                                        {{ HTML::image(URL::to('/') . $event->locations->event_image, $event->locations->name, ['class' => 'img-responsive']) }}
+                                    <a href="http://lex.events/event/{{ $event['id'] }}">
+                                        {{ HTML::image('http://lex.events' . $event->locations->event_image, $event->locations->name, ['class' => 'img-responsive']) }}
                                     </a>
                                 </div>
                                 <div class="event-text">
                                     <div class="event-heading">
-                                        <h2><a href="{{ URL::to('/') }}/event/{{ $event->id }}">{{ $event->title }}</a></h2>
+                                        <h2><a href="http://lex.events/event/{{ $event->id }}">{{ $event->title }}</a></h2>
                                     </div>
                                     <div class="event-details">
                                         <span class="info">Location:</span> {{ $event->hosted_by }}
