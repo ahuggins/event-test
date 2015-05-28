@@ -113,11 +113,13 @@
 							 	@if ($event->event_image)
 							 		<a href="event/{{ $event['id'] }}">
 										<!-- <img src="images/{{ $event->event_image }}" alt="" class="img-responsive"> -->
-
 									</a>
+								@else
+								<a href="event/{{ $event['id'] }}">
+									{{ HTML::image(URL::to('/') . $event->locations->event_image, $event->locations->name, ['class' => 'img-responsive']) }}
+								</a>
 							 	@endif
 
-								{{ HTML::image(URL::to('/') . $event->locations->event_image, $event->locations->name, ['class' => 'img-responsive']) }}
 								<div class="details">
 									<a href="event/{{ $event['id'] }}">
 										<h3>{{ $event['title'] }}</h3>
