@@ -7,47 +7,47 @@
 
 /* Client-specific Styles & Reset */
 
-#outlook a { 
-  padding:0; 
-} 
-
-body{ 
-  width:100% !important; 
-  min-width: 100%;
-  -webkit-text-size-adjust:100%; 
-  -ms-text-size-adjust:100%; 
-  margin:0; 
+#outlook a {
   padding:0;
 }
 
-.ExternalClass { 
-  width:100%;
-} 
-
-.ExternalClass, 
-.ExternalClass p, 
-.ExternalClass span, 
-.ExternalClass font, 
-.ExternalClass td, 
-.ExternalClass div { 
-  line-height: 100%; 
-} 
-
-#backgroundTable { 
-  margin:0; 
-  padding:0; 
-  width:100% !important; 
-  line-height: 100% !important; 
+body{
+  width:100% !important;
+  min-width: 100%;
+  -webkit-text-size-adjust:100%;
+  -ms-text-size-adjust:100%;
+  margin:0;
+  padding:0;
 }
 
-img { 
-  outline:none; 
-  text-decoration:none; 
+.ExternalClass {
+  width:100%;
+}
+
+.ExternalClass,
+.ExternalClass p,
+.ExternalClass span,
+.ExternalClass font,
+.ExternalClass td,
+.ExternalClass div {
+  line-height: 100%;
+}
+
+#backgroundTable {
+  margin:0;
+  padding:0;
+  width:100% !important;
+  line-height: 100% !important;
+}
+
+img {
+  outline:none;
+  text-decoration:none;
   -ms-interpolation-mode: bicubic;
   width: auto;
-  max-width: 100%; 
-  float: left; 
-  clear: both; 
+  max-width: 100%;
+  float: left;
+  clear: both;
   display: block;
 }
 
@@ -56,7 +56,7 @@ center {
   min-width: 580px;
 }
 
-a img { 
+a img {
   border: none;
 }
 
@@ -69,12 +69,12 @@ table {
   border-collapse: collapse;
 }
 
-td { 
+td {
   word-break: break-word;
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
   hyphens: auto;
-  border-collapse: collapse !important; 
+  border-collapse: collapse !important;
 }
 
 table, tr, td {
@@ -84,9 +84,9 @@ table, tr, td {
 }
 
 hr {
-  color: #d9d9d9; 
-  background-color: #d9d9d9; 
-  height: 1px; 
+  color: #d9d9d9;
+  background-color: #d9d9d9;
+  height: 1px;
   border: none;
 }
 
@@ -103,8 +103,8 @@ table.container {
   text-align: inherit;
 }
 
-table.row { 
-  padding: 0px; 
+table.row {
+  padding: 0px;
   width: 100%;
   position: relative;
 }
@@ -125,7 +125,7 @@ table.column {
 
 table.columns td,
 table.column td {
-  padding: 0px 0px 10px; 
+  padding: 0px 0px 10px;
 }
 
 table.columns td.sub-columns,
@@ -319,13 +319,13 @@ img.center {
 
 /* Typography */
 
-body, table.body, h1, h2, h3, h4, h5, h6, p, td { 
+body, table.body, h1, h2, h3, h4, h5, h6, p, td {
   color: #222222;
-  font-family: "Helvetica", "Arial", sans-serif; 
-  font-weight: normal; 
-  padding:0; 
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-weight: normal;
+  padding:0;
   margin: 0;
-  text-align: left; 
+  text-align: left;
   line-height: 1.3;
 }
 
@@ -346,7 +346,7 @@ p.lead, p.lede, p.leed {
   line-height:21px;
 }
 
-p { 
+p {
   margin-bottom: 10px;
 }
 
@@ -355,48 +355,48 @@ small {
 }
 
 a {
-  color: #2ba6cb; 
+  color: #2ba6cb;
   text-decoration: none;
 }
 
-a:hover { 
+a:hover {
   color: #2795b6 !important;
 }
 
-a:active { 
+a:active {
   color: #2795b6 !important;
 }
 
-a:visited { 
+a:visited {
   color: #2ba6cb !important;
 }
 
-h1 a, 
-h2 a, 
-h3 a, 
-h4 a, 
-h5 a, 
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
 h6 a {
   color: #2ba6cb;
 }
 
-h1 a:active, 
-h2 a:active,  
-h3 a:active, 
-h4 a:active, 
-h5 a:active, 
-h6 a:active { 
-  color: #2ba6cb !important; 
-} 
+h1 a:active,
+h2 a:active,
+h3 a:active,
+h4 a:active,
+h5 a:active,
+h6 a:active {
+  color: #2ba6cb !important;
+}
 
-h1 a:visited, 
-h2 a:visited,  
-h3 a:visited, 
-h4 a:visited, 
-h5 a:visited, 
-h6 a:visited { 
-  color: #2ba6cb !important; 
-} 
+h1 a:visited,
+h2 a:visited,
+h3 a:visited,
+h4 a:visited,
+h5 a:visited,
+h6 a:visited {
+  color: #2ba6cb !important;
+}
 
 /* Panels */
 
@@ -519,7 +519,7 @@ table.medium-button td a:visited,
 table.large-button:hover td a,
 table.large-button:active td a,
 table.large-button td a:visited {
-  color: #ffffff !important; 
+  color: #ffffff !important;
 }
 
 table.secondary td {
@@ -782,12 +782,19 @@ body.outlook p {
         font-size: 18px;
         font-weight: bold;
         border-bottom: 1px solid #DEDEDE;
+        padding-bottom: 10px;
+        padding-top: 10px;
         margin-bottom: 10px;
+        margin-top: 10px;
     }
     .event .info {
         color: #bbbbbb;
     }
-    
+    .event-text {
+        clear: both;
+    }
+
+
   </style>
 </head>
 <body>
@@ -836,16 +843,23 @@ body.outlook p {
                           <td>
                             @foreach ( $events as $event )
                             <div class="event">
-                                <div class="event-heading">
-                                    <h2><a href="/event/{{ $event->id }}">{{ $event->title }}</a></h2>
+                                <div class="event-image">
+                                    <a href="{{ URL::to('/') }}/event/{{ $event['id'] }}">
+                                        {{ HTML::image(URL::to('/') . $event->locations->event_image, $event->locations->name, ['class' => 'img-responsive']) }}
+                                    </a>
                                 </div>
-                                <div class="event-details">
-                                    <span class="info">Location:</span> {{ $event->hosted_by }}
-                                    <br />
-                                    <span class="info">Date:</span> {{ date('M d @ g a', strtotime($event->start_time)) }}
-                                </div>
-                                <div class="event-description">
-                                    {{ $event->description }}
+                                <div class="event-text">
+                                    <div class="event-heading">
+                                        <h2><a href="{{ URL::to('/') }}/event/{{ $event->id }}">{{ $event->title }}</a></h2>
+                                    </div>
+                                    <div class="event-details">
+                                        <span class="info">Location:</span> {{ $event->hosted_by }}
+                                        <br />
+                                        <span class="info">Date:</span> {{ date('M d @ g a', strtotime($event->start_time)) }}
+                                    </div>
+                                    <div class="event-description">
+                                        {{ $event->description }}
+                                    </div>
                                 </div>
                             </div>
                             @endforeach

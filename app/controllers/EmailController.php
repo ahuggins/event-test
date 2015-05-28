@@ -38,11 +38,13 @@ class EmailController extends BaseController
 
 				if (!empty($events)) {
 
+					// return View::make('emails.app.summary', ['events' => $events, 'user' => $user]);
+
 					Mail::send('emails.app.summary', ['events' => $events, 'user' => $user], function( $message ) use ( $user )
 					{
 						$message->to($user->email)->subject('Lex.events weekly events!');
 					});
-					
+
 				}
 			}
 		}
