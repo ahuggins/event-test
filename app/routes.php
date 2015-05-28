@@ -35,7 +35,7 @@ Route::get('events', 'EventController@index');
 
 Route::get('/', 'EventController@index');
 Route::get('myevents', 'EventController@viewMyEvents');
-
+Route::get('privacy', 'PagesController@privacy');
 // Route::get('/test', 'HomeController@test');
 // Route::get('new', 'EmailController@signUps');
 // Route::get('summary', 'EmailController@summary');
