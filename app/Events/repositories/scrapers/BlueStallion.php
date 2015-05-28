@@ -73,6 +73,7 @@ class BlueStallion extends Scraper implements ScraperInterface
 				$item['location'] = $this->location->address . '<br>' . $this->location->city . ' ' . $this->location->state . ', ' . $this->location->zip;
 				$item['hosted_by'] = $this->location->name;
 				$item['created_by'] = 'admin';
+				$item['locations_id'] = $this->location_id;
 				$item['event_type'] = $this->eventTags($item['vendor_event_code']);
 				$this->events[] = $item;
 

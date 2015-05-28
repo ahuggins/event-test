@@ -75,6 +75,7 @@ class CosmicCharlies extends Scraper
 			$lexevent['vendor_event_id'] = $this->getVendorId();
 			$lexevent['description'] = $this->getDescription($lexevent);
 			$lexevent['full_details'] = $this->getFullDetails();
+			$lexevent['locations_id'] = $this->location_id;
 			$lexevent['event_type'] = 2;
 			$this->events[] = $lexevent;
 		}

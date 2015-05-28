@@ -68,6 +68,7 @@ class AlsBar extends Scraper
 		$lexevent['description'] = '';
 		$lexevent['full_details'] = '';
 		$lexevent['created_by'] = 'admin';
+		$lexevent['locations_id'] = $this->location_id;
 		$lexevent['vendor_event_id'] = $this->crawler->filter('.eventitem')->attr('data-item-id');
 		if (!preg_match('/Closed/', $lexevent['title'])) {
 			$this->events[] = $lexevent;

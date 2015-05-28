@@ -57,6 +57,7 @@ class ParlaySocial extends Scraper
 		$lexevent['full_details'] = '';
 		$lexevent['event_type'] = $this->eventTags($lexevent['title']);
 		$lexevent['created_by'] = 'admin';
+		$lexevent['locations_id'] = $this->location_id;
 		$lexevent['vendor_event_id'] = $this->vendorId($lexevent['date']['start_time']);
 		$this->events[] = $lexevent;
 	}

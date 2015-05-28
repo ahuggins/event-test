@@ -57,6 +57,7 @@ class NatashasBistro extends Scraper
 		$lexevent['full_details'] = $this->fullDetails($node);
 		$lexevent['event_type'] = $this->eventTags($lexevent['full_details']);
 		$lexevent['created_by'] = 'admin';
+		$lexevent['locations_id'] = $this->location_id;
 		$lexevent['vendor_event_id'] = $this->vendorId($node);
 		if (!preg_match('/Closed/', $lexevent['title'])) {
 			$this->events[] = $lexevent;

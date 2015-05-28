@@ -112,9 +112,12 @@
 							 <div class="event col-xs-12 col-sm-6 col-md-4 col-lg-3 clearfix @if( is_array($class) ) {{ implode(' ', $class) }} @endif @foreach($event['Tags'] as $tag) {{ $tag['filter_text'] }} @endforeach">
 							 	@if ($event->event_image)
 							 		<a href="event/{{ $event['id'] }}">
-										<img src="images/{{ $event->event_image }}" alt="" class="img-responsive">
+										<!-- <img src="images/{{ $event->event_image }}" alt="" class="img-responsive"> -->
+
 									</a>
 							 	@endif
+
+								{{ HTML::image(URL::to('/') . $event->locations->event_image, $event->locations->name, ['class' => 'img-responsive']) }}
 								<div class="details">
 									<a href="event/{{ $event['id'] }}">
 										<h3>{{ $event['title'] }}</h3>

@@ -55,6 +55,7 @@ class Willies extends Scraper
 		$lexevent['description'] = '';
 		$lexevent['full_details'] = '';
 		$lexevent['event_type'] = 2;
+		$lexevent['locations_id'] = $this->location_id;
 		$lexevent['created_by'] = 'admin';
 		$lexevent['vendor_event_id'] = $this->vendorId($lexevent['date']['start_time']);
 		$this->events[] = $lexevent;

@@ -58,6 +58,7 @@ class Scraper
 							$event['event_type'] = $eventNew['event_type'];
 							$event['location'] = $eventNew['location'];
 							$event['created_by'] = $eventNew['created_by'];
+							$event['locations_id'] = $eventNew['locations_id'];
 							$event['start_time'] = $eventNew['date']['start_time'];
 							$event['end_time'] = $eventNew['date']['end_time'];
 							$event->save();
@@ -73,6 +74,7 @@ class Scraper
 							'hosted_by' => $eventNew['hosted_by'],
 							'event_type' => $eventNew['event_type'],
 							'location' => $eventNew['location'],
+							'locations_id' => $eventNew['locations_id'],
 							'created_by' => $eventNew['created_by'],
 							'start_time' => $eventNew['date']['start_time'],
 							'end_time' => $eventNew['date']['end_time']

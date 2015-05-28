@@ -9,4 +9,9 @@ class Locations extends Eloquent {
 	 */
 	protected $table = 'locations';
 
+	public function events()
+	{
+		return $this->belongsToMany('Events');
+	}
+
 }

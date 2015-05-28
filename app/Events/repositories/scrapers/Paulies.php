@@ -71,6 +71,7 @@ class Paulies extends Scraper
 		$lexevent['full_details'] = '';
 		$lexevent['event_type'] = 2;
 		$lexevent['created_by'] = 'admin';
+		$lexevent['locations_id'] = $this->location_id;
 		$lexevent['vendor_event_id'] = $this->vendorId($node);
 		$this->events[] = $lexevent;
 		// print_r($lexevent);

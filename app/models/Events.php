@@ -60,4 +60,17 @@ class Events extends Eloquent implements UserInterface, RemindableInterface {
 		}
 		return $class;
 	}
+
+	public function locations()
+	{
+		return $this->belongsTo('Locations');
+	}
+
+	public static function image($event)
+	{
+		if ($event->event_image) {
+			return $event->event_image;
+		}
+		return $event->event_image;
+	}
 }

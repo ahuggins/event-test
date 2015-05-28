@@ -72,6 +72,7 @@ class NOLI extends Scraper
 		$lexevent['description'] = '';
 		$lexevent['full_details'] = '';
 		$lexevent['event_type'] = '2,4';
+		$lexevent['locations_id'] = $this->location_id;
 		$lexevent['created_by'] = 'admin';
 		$lexevent['vendor_event_id'] = $this->vendorId($node);
 		$this->events[] = $lexevent;
