@@ -19,7 +19,6 @@
 								<button class="btn btn-default" data-filter=".{{ $tag['filter_text'] }}">{{ $tag['tag_text'] }}</button>
 							@endforeach
 						@endif
-
 					</div>
 				</div>
 				<div class="ui-group col-md-12">
@@ -72,14 +71,9 @@
 													@endif
 												@endif
 										{{ Form::close() }}
-										@if ($event['created_by'] == Auth::user()->username)
-											<a href="event/{{ $event['id'] }}/edit">
-												<button class="btn btn-default btn-xs pull-right">Edit</button>
-											</a>
-										@endif
+										@include('partials.edit')
 									</div>
 								</div>
-
 							</div>
 						@empty
 							<div class="event col-md-4">There are no events to display.</div>
