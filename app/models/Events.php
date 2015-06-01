@@ -61,6 +61,15 @@ class Events extends Eloquent implements UserInterface, RemindableInterface {
 		return $class;
 	}
 
+	public static function timeClasses($start_time)
+	{
+		$class = Events::getTimeClass($start_time);
+		if (is_array($class)) {
+			return implode(' ', $class);
+		}
+		return $class;
+	}
+
 	public function locations()
 	{
 		return $this->belongsTo('Locations');
@@ -68,9 +77,19 @@ class Events extends Eloquent implements UserInterface, RemindableInterface {
 
 	public static function image($event)
 	{
-		if ($event->event_image) {
-			return $event->event_image;
+		if (empty($event->event_image)) {
+			return $event->locations->event_image;
 		}
 		return $event->event_image;
+	}
+
+	public static function start($start_time)
+	{
+		return date('M d', strtotime( $start_time ) ) . ' @ ' . date( 'h:i A', strtotime( $start_time ) );
+	}
+
+	public static function getEndTimeAttribute($value)
+	{
+		return date( 'h:i A', strtotime( $value ) );
 	}
 }
