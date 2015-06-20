@@ -50,7 +50,7 @@
 										<h3>{{ $event['title'] }}</h3>
 									</a>
 									<div class="location">
-										{{ $event->locations->name }}
+										<a href="location/{{ $event->locations->id }}">{{ $event->locations->name }}</a>
 									</div>
 									<div class="time">
 										{{ Events::start($event->start_time) }} - {{ $event->end_time }}

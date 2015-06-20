@@ -202,4 +202,16 @@ class EventController extends \BaseController {
         return View::make('events/all', ['events' => $events, 'tags' => $tags, 'attending' => $attends]);
     }
 
+    public function locationEvents($id)
+    {
+        $events = Events::where('locations_id', '=', $id)
+        ->with(['locations','tags'])
+        ->orderBy('start_time', 'ASC')
+        ->whereBetween('start_time', [\Carbon\Carbon::now()->subHours(8)->toDateString(), \Carbon\Carbon::now()->addDays(30)->toDateString()])
+        ->get();
+        $tags = Tags::all();
+        $attends = EventsUsers::getIds();
+        return View::make('events.all', ['events' => $events, 'tags' => $tags, 'attending' => $attends]);
+    }
+
 }
