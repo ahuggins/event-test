@@ -16,18 +16,19 @@
 					{{ $event->full_details }}
 				</div>
 				<div class="col-md-5">
-					Time: <br />
+					Time: <br>
 					{{ Events::start($event->start_time) }} - {{ $event->end_time }} <br>
-					Location:<br />
-					{{ $event->location }}<br />
-					Hosted By:<br />
-					{{ $event->hosted_by }}<br />
-					Created By:<br />
-					{{ $event->created_by }}<br />
-					Event Type: <br />
-					{{ $event->event_type }}<br />
-					Map:<br />
-					MAP GOES HERE<br />
+					Location:<br>
+					{{ $event->locations->address }}<br>
+					{{ $event->locations->city }} {{ $event->locations->state }}, {{ $event->locations->zip }} <br>
+					Hosted By:<br>
+					{{ $event->locations->name }}<br>
+					Created By:<br>
+					{{ $event->created_by }}<br>
+					Event Type: <br>
+					{{ $event->event_type }}<br>
+					Map:<br>
+					MAP GOES HERE<br>
 				</div>
 			</div>
 		</div>

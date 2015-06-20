@@ -31,7 +31,11 @@ class Events extends Eloquent implements UserInterface, RemindableInterface {
 	}
 	public static function thirtyDays()
 	{
-		$events = Events::with('Tags')->orderBy('start_time', 'ASC')->whereBetween('start_time', array( date('Y-m-d', strtotime('now')), date('Y-m-d', strtotime('+30 days'))) )->get();
+		$events = Events::with(['tags', 'locations'])
+			->orderBy('start_time', 'ASC')
+			->whereBetween('start_time', [\Carbon\Carbon::now()->subHours(8)->toDateString(), \Carbon\Carbon::now()->addDays(30)->toDateString()])
+			->remember(60)
+			->get();
 		return $events;
 	}
 
@@ -72,7 +76,7 @@ class Events extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function locations()
 	{
-		return $this->belongsTo('Locations');
+		return $this->belongsTo('locations');
 	}
 
 	public static function image($event)

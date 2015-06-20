@@ -14,6 +14,7 @@ class EventController extends \BaseController {
         }
         $tags = Tags::all();
         $events = Events::thirtyDays();
+        // return $events;
         $attends = EventsUsers::getIds();
         return View::make('events/all', ['events' => $events, 'tags' => $tags, 'attending' => $attends]);
     }

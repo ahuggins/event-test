@@ -41,7 +41,7 @@
 				<div id="events">
 					@if (isset($events))
 						@forelse($events as $event)
-							 <div class="event col-xs-12 col-sm-6 col-md-4 col-lg-3 clearfix {{ Events::timeClasses($event->start_time) }} @foreach($event['Tags'] as $tag) {{ $tag['filter_text'] }} @endforeach">
+							 <div class="event col-xs-12 col-sm-6 col-md-4 col-lg-3 clearfix {{ Events::timeClasses($event->start_time) }} @foreach($event->tags as $tag) {{ $tag['filter_text'] }} @endforeach">
 								<a href="event/{{ $event['id'] }}">
 									{{ HTML::image(URL::to('/') . Events::image($event), $event->locations->name, ['class' => 'img-responsive']) }}
 								</a>
@@ -50,7 +50,7 @@
 										<h3>{{ $event['title'] }}</h3>
 									</a>
 									<div class="location">
-										{{ $event['hosted_by'] }}
+										{{ $event->locations->name }}
 									</div>
 									<div class="time">
 										{{ Events::start($event->start_time) }} - {{ $event->end_time }}
