@@ -193,6 +193,7 @@ class EventController extends \BaseController {
             // $events = Events::whereIn('id', $attends)->get();
 
         $events = Events::whereIn('id', $attends)
+                            ->with(['tags','locations'])
                             ->whereBetween('start_time', array(
                                 date('Y-m-d', strtotime('now')),
                                 date('Y-m-d', strtotime('+30 days'))) )
