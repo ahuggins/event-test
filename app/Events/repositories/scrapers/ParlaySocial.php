@@ -51,8 +51,6 @@ class ParlaySocial extends Scraper
 		$lexevent['title'] = $this->getTitle($node);
 		$lexevent['date']['start_time'] = $this->start_time($node);
 		$lexevent['date']['end_time'] = $this->end_time($lexevent['date']['start_time']);
-		$lexevent['location'] = $this->location();
-		$lexevent['hosted_by'] = $this->location->name;
 		$lexevent['description'] = '';
 		$lexevent['full_details'] = '';
 		$lexevent['event_type'] = $this->eventTags($lexevent['title']);
@@ -88,11 +86,6 @@ class ParlaySocial extends Scraper
 	protected function end_time($time)
 	{
 		return date('Y-m-d H:i:s', strtotime('+3 hours', strtotime($time)));
-	}
-
-	protected function location()
-	{
-		return $this->location->address . '<br>' . $this->location->city . ' ' . $this->location->state . ', ' . $this->location->zip;
 	}
 
 	protected function getEventUrls($url)

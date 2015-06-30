@@ -62,8 +62,6 @@ class AlsBar extends Scraper
 		$lexevent['title'] = $this->crawler->filter('.eventitem-title')->text();
 		$lexevent['date']['start_time'] = $this->start_time();
 		$lexevent['date']['end_time'] = $this->end_time();
-		$lexevent['location'] = $this->location();
-		$lexevent['hosted_by'] = $this->location->name;
 		$lexevent['event_type'] = $this->eventTags($lexevent['title']);
 		$lexevent['description'] = '';
 		$lexevent['full_details'] = '';

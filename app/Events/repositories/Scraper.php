@@ -33,7 +33,7 @@ class Scraper
 		{
 			// if event exists...update it
 			if ( $exists = Events::where( 'vendor_event_id', '=', $eventNew['vendor_event_id'] )
-							->where('hosted_by', '=', $eventNew['hosted_by'])
+							->where('locations_id', '=', $eventNew['locations_id'])
 							->first()
 				)
 			{
@@ -45,7 +45,7 @@ class Scraper
 				if (Events::whereBetween('start_time', array($begin, $end))->where('title', '=', $eventNew['title'])->count() > 0 && !empty($eventNew['title'])) {
 					$existingEvents = Events::whereBetween('start_time', array($begin, $end))
 										->where('title', '=', $eventNew['title'])
-										->where('hosted_by', '=', $eventNew['hosted_by'])
+										->where('locations_id', '=', $eventNew['locations_id'])
 										->orderBy('start_time', 'ASC')
 										->get();
 					foreach ($existingEvents as $event) {
@@ -54,9 +54,7 @@ class Scraper
 							$event['title'] = $eventNew['title'];
 							$event['description'] = $eventNew['description'];
 							$event['vendor_event_id'] = $eventNew['vendor_event_id'];
-							$event['hosted_by'] = $eventNew['hosted_by'];
 							$event['event_type'] = $eventNew['event_type'];
-							$event['location'] = $eventNew['location'];
 							$event['created_by'] = $eventNew['created_by'];
 							$event['locations_id'] = $eventNew['locations_id'];
 							$event['start_time'] = $eventNew['date']['start_time'];
@@ -71,9 +69,7 @@ class Scraper
 							'title' => $eventNew['title'],
 							'description' => $eventNew['description'],
 							'vendor_event_id' => $eventNew['vendor_event_id'],
-							'hosted_by' => $eventNew['hosted_by'],
 							'event_type' => $eventNew['event_type'],
-							'location' => $eventNew['location'],
 							'locations_id' => $eventNew['locations_id'],
 							'created_by' => $eventNew['created_by'],
 							'start_time' => $eventNew['date']['start_time'],

@@ -65,8 +65,6 @@ class Paulies extends Scraper
 		$lexevent['title'] = $this->getTitle($node);
 		$lexevent['date']['start_time'] = $this->start_time($node);
 		$lexevent['date']['end_time'] = $this->end_time($lexevent['date']['start_time']);
-		$lexevent['location'] = $this->location();
-		$lexevent['hosted_by'] = $this->location->name;
 		$lexevent['description'] = $this->description($node);
 		$lexevent['full_details'] = '';
 		$lexevent['event_type'] = 2;
@@ -107,11 +105,6 @@ class Paulies extends Scraper
 	protected function description($node)
 	{
 		return $node->filter('.ai1ec-popup-excerpt')->text();
-	}
-
-	protected function location()
-	{
-		return $this->location->address . '<br>' . $this->location->city . ' ' . $this->location->state . ', ' . $this->location->zip;
 	}
 
 	protected function getEventUrls($url)

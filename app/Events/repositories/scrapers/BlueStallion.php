@@ -70,8 +70,6 @@ class BlueStallion extends Scraper implements ScraperInterface
 				$item['description'] = $event->parent()->next_sibling()->children(4)->plaintext;
 				$item['vendor_event_code'] = $event->parent()->next_sibling()->children(0)->children(0)->title;
 				$item['title'] = $this->checkUK($this->cleanup($event->find('.ai1ec-event-title', 0)->plaintext, ENT_COMPAT, 'utf-8'));
-				$item['location'] = $this->location->address . '<br>' . $this->location->city . ' ' . $this->location->state . ', ' . $this->location->zip;
-				$item['hosted_by'] = $this->location->name;
 				$item['created_by'] = 'admin';
 				$item['locations_id'] = $this->location_id;
 				$item['event_type'] = $this->eventTags($item['vendor_event_code']);

@@ -51,8 +51,6 @@ class NatashasBistro extends Scraper
 		$lexevent['title'] = $this->getTitle($node);
 		$lexevent['date']['start_time'] = $this->start_time($node);
 		$lexevent['date']['end_time'] = $this->end_time($lexevent['date']['start_time']);
-		$lexevent['location'] = $this->location();
-		$lexevent['hosted_by'] = $this->location->name;
 		$lexevent['description'] = trim($node->filter('.moreinfo')->text());
 		$lexevent['full_details'] = $this->fullDetails($node);
 		$lexevent['event_type'] = $this->eventTags($lexevent['full_details']);

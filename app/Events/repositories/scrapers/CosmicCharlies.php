@@ -69,8 +69,6 @@ class CosmicCharlies extends Scraper
 			$lexevent['date']['start_time'] = $this->getDate($event);
 			$lexevent['date']['end_time'] = $this->endTime($lexevent['date']['start_time']);
 			$lexevent['title'] = $this->getHeadliner($event);
-			$lexevent['location'] = $this->location->address . '<br>' . $this->location->city . ' ' . $this->location->state . ', ' . $this->location->zip;
-			$lexevent['hosted_by'] = $this->location->name;
 			$lexevent['created_by'] = 'admin';
 			$lexevent['vendor_event_id'] = $this->getVendorId();
 			$lexevent['description'] = $this->getDescription($lexevent);

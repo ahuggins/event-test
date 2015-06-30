@@ -67,8 +67,6 @@ class NOLI extends Scraper
 		$lexevent['title'] = $this->getTitle($node);
 		$lexevent['date']['start_time'] = $this->start_time($node);
 		$lexevent['date']['end_time'] = $this->end_time($node);
-		$lexevent['location'] = $this->location();
-		$lexevent['hosted_by'] = $this->location->name;
 		$lexevent['description'] = '';
 		$lexevent['full_details'] = '';
 		$lexevent['event_type'] = '2,4';
@@ -103,11 +101,6 @@ class NOLI extends Scraper
 		$time = $node->filteR('.event-time-12hr-end')->text();
 		$date = date('Y-m-d H:i:s', strtotime($date . $time));
 		return $date;
-	}
-
-	protected function location()
-	{
-		return $this->location->address . '<br>' . $this->location->city . ' ' . $this->location->state . ', ' . $this->location->zip;
 	}
 
 	protected function getEventUrls($url)
