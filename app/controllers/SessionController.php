@@ -1,5 +1,7 @@
 <?php
 
+
+
 class SessionController extends \BaseController {
 
 	/**
@@ -41,6 +43,71 @@ class SessionController extends \BaseController {
 	{
 		Auth::logout();
 		return Redirect::route('session.create');
+	}
+
+	public function socialLogin($provider)
+	{
+
+		/**
+		* Obtain an access token.
+		*/
+		try
+		{
+
+			dd(Facebook::getLoginUrl());
+			$token = Facebook::getTokenFromRedirect();
+
+			if ( ! $token)
+			{
+				return Redirect::to('/login')->with('error', 'Unable to obtain access token.');
+			}
+		}
+		catch (FacebookQueryBuilderException $e)
+		{
+			return Redirect::to('/')->with('error', $e->getPrevious()->getMessage());
+		}
+
+		if ( ! $token->isLongLived())
+		{
+			/**
+			* Extend the access token.
+			*/
+			try
+			{
+				$token = $token->extend();
+			}
+			catch (FacebookQueryBuilderException $e)
+			{
+				return Redirect::to('/')->with('error', $e->getPrevious()->getMessage());
+			}
+		}
+
+		Facebook::setAccessToken($token);
+
+		/**
+		* Get basic info on the user from Facebook.
+		*/
+		try
+		{
+			$facebook_user = Facebook::object('me')->fields('id','name')->get();
+		}
+		catch (FacebookQueryBuilderException $e)
+		{
+			return Redirect::to('/')->with('error', $e->getPrevious()->getMessage());
+		}
+
+		// Create the user if not exists or update existing
+		$user = User::createOrUpdateFacebookObject($facebook_user);
+
+		// Log the user into Laravel
+		Facebook::auth()->login($user);
+
+		return Redirect::to('/')->with('message', 'Successfully logged in with Facebook');
+	}
+
+	public function socialCallback($provider)
+	{
+
 	}
 
 }

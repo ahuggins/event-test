@@ -12,6 +12,8 @@
 
 
 Route::get('login', 'SessionController@create');
+Route::get('login/callback/{provider}', 'SessionController@socialCallback');
+Route::get('login/{provider}', 'SessionController@socialLogin');
 Route::get('logout', 'SessionController@destroy');
 Route::resource('session', 'SessionController', ['only' => ['create', 'store', 'destroy']]);
 Route::post('events', 'EventController@attend');

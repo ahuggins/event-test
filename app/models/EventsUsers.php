@@ -11,7 +11,10 @@ class EventsUsers extends Eloquent {
 
 	public static function attending($user_id)
 	{
-		$attending = EventsUsers::where('users_id', '=', $user_id)->get();
+		$attending = EventsUsers::where('users_id', '=', $user_id)
+								->join('events', 'events.id', '=', 'events-users.events_id')
+								->where('events.start_time', '>', \Carbon\Carbon::now())
+								->get();
 		return $attending;
 	}
 

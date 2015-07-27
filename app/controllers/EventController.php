@@ -206,10 +206,10 @@ class EventController extends \BaseController {
     public function locationEvents($id)
     {
         $events = Events::where('locations_id', '=', $id)
-        ->with(['locations','tags'])
-        ->orderBy('start_time', 'ASC')
-        ->whereBetween('start_time', [\Carbon\Carbon::now()->subHours(8)->toDateString(), \Carbon\Carbon::now()->addDays(30)->toDateString()])
-        ->get();
+            ->with(['locations','tags'])
+            ->orderBy('start_time', 'ASC')
+            ->whereBetween('start_time', [\Carbon\Carbon::now()->subHours(8)->toDateString(), \Carbon\Carbon::now()->addDays(30)->toDateString()])
+            ->get();
         $tags = Tags::all();
         $attends = EventsUsers::getIds();
         return View::make('events.all', ['events' => $events, 'tags' => $tags, 'attending' => $attends]);
@@ -219,9 +219,9 @@ class EventController extends \BaseController {
     {
         // return 'TEst this shit is working now biatch';
         $events = Events::whereBetween('start_time', [\Carbon\Carbon::parse($year . '-' . $month . '-' . $day), \Carbon\Carbon::parse($year . '-' . $month . '-' . $day)->addDays(1)])
-        ->with(['locations','tags'])
-        ->orderBy('start_time', 'ASC')
-        ->get();
+            ->with(['locations','tags'])
+            ->orderBy('start_time', 'ASC')
+            ->get();
         $tags = Tags::all();
         $attends = EventsUsers::getIds();
         return View::make('events.all', ['events' => $events, 'tags' => $tags, 'attending' => $attends]);

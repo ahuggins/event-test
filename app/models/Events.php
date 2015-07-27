@@ -8,7 +8,6 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class Events extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
-
 	/**
 	 * The database table used by the model.
 	 *

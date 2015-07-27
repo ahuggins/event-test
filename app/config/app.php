@@ -124,6 +124,7 @@ return array(
 		'Barryvdh\Debugbar\ServiceProvider',
 		'Monashee\PhpSimpleHtmlDomParser\PhpSimpleHtmlDomParserServiceProvider',
 		'Indatus\Dispatcher\ServiceProvider',
+		'SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider',
 	),
 
 	/*
@@ -191,6 +192,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Debugbar' 		  => 'Barryvdh\Debugbar\Facade',
+		'Facebook' => 'SammyK\LaravelFacebookSdk\FacebookFacade',
 	),
 
 );

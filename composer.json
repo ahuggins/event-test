@@ -10,7 +10,8 @@
 		"monashee/php-simple-html-dom-parser": "dev-master",
 		"Indatus/Dispatcher": "~1.4",
 		"johngrogg/ics-parser": "dev-master",
-		"fabpot/goutte": "2.0.*@dev"
+		"fabpot/goutte": "2.0.*@dev",
+		"sammyk/laravel-facebook-sdk": "~1.2"
 	},
 	"autoload": {
 		"classmap": [
